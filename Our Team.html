@@ -28,12 +28,12 @@
   .lead-doc-media img.doc-photo { width:100%; border-radius: var(--radius-lg); display:block; aspect-ratio:3/4; object-fit:cover; object-position:center top; }
   .member h3 { font-family: var(--font-sans); font-weight:700; font-size:1.05rem; }
   .member p { font-size:0.86rem; color:hsl(var(--muted-foreground)); }
+  @media (max-width: 900px) {
     .mission, .lead-doc { grid-template-columns: 1fr; gap:2rem; }
     .lead-doc .lead-doc-media { max-width: 360px; }
     .team-grid { grid-template-columns: repeat(2,1fr); }
+  }
   @media (max-width: 520px) { .team-grid { grid-template-columns: 1fr; } }
-  @media (max-width:1000px){.team-grid{grid-template-columns:repeat(2,1fr);}}
-  @media (max-width:520px){.team-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -95,7 +95,7 @@
 <section class="section" style="background:hsl(var(--surface)); border-block:1px solid hsl(var(--border));">
   <div class="container lead-doc">
     <div class="lead-doc-media reveal">
-      <img class="doc-photo" src="assets/photos/team/dr_steven_locnikar.webp" alt="Dr. Steven Locnikar" loading="lazy" />
+      <img class="doc-photo" src="assets/photos/team/dr_steven_locnikar_lead.webp" alt="Dr. Steven Locnikar" loading="lazy" />
     </div>
     <div class="reveal" data-delay="1">
       <span class="eyebrow">Medical leadership</span>
