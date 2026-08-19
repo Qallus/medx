@@ -4,6 +4,27 @@
 (function () {
   'use strict';
 
+  /* ------------------------------------------------------------
+     Backend endpoint for the enquiry forms.
+
+     Points at the send-inquiry Supabase Edge Function, which stores
+     the submission and emails the clinic. The anon key is safe in
+     page source: RLS denies it every table, and the function is the
+     only public surface.
+
+     Until supabaseUrl is filled in the forms show an error telling
+     the visitor to call, rather than a success message for a
+     submission that went nowhere.
+     ------------------------------------------------------------ */
+  var CONFIG = window.MEDX_CONFIG || {
+    supabaseUrl: '',        // e.g. 'https://abcdefgh.supabase.co'
+    supabaseAnonKey: '',    // publishable anon key
+    functionName: 'send-inquiry'
+  };
+
+  var PHONE_FALLBACK = 'Something went wrong sending your request. Please call 480-219-0055.';
+  var NOT_CONFIGURED = 'Online requests are not available just yet. Please call us at 480-219-0055.';
+
   /* ---- Theme (dark default, persisted) ---- */
   var root = document.documentElement;
   function applyTheme(t) {
@@ -135,6 +156,7 @@
               '<div class="field"><label for="m_visit">Visit type</label><select class="select" id="m_visit" name="visit"><option>In person (Scottsdale)</option><option>Telemedicine</option><option>Either works</option></select></div>' +
             '</div>' +
             '<div class="field"><label for="m_message">Questions and comments <span class="muted" style="font-weight:400;">(optional)</span></label><textarea class="textarea" id="m_message" name="message" placeholder="Ask us anything about our services, scheduling, or getting started."></textarea></div>' +
+            '<div class="hp" aria-hidden="true"><label>Company<input type="text" name="company" tabindex="-1" autocomplete="off" /></label></div>' +
             '<button type="submit" class="btn btn-primary btn-lg btn-block" style="margin-top:.3rem;">Request appointment<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></svg></button>' +
             '<div class="privacy-note" style="display:flex;gap:.6rem;align-items:flex-start;font-size:.84rem;color:hsl(var(--muted-foreground));margin-top:.2rem;">' +
               '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;color:hsl(var(--primary));flex:none;margin-top:2px;"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>' +
@@ -178,15 +200,9 @@
     root.querySelectorAll('[data-modal-close]').forEach(function (el) { el.addEventListener('click', closeModal); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && root.classList.contains('open')) closeModal(); });
 
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      if (window.validateMedXForm(form)) {
-        dialog.classList.add('sent');
-        dialog.scrollTop = 0;
-      } else {
-        var bad = form.querySelector('.field.invalid input, .field.invalid select, .field.invalid textarea');
-        if (bad) bad.focus();
-      }
+    window.wireMedXForm(form, 'modal', function () {
+      dialog.classList.add('sent');
+      dialog.scrollTop = 0;
     });
     form.querySelectorAll('[data-validate] input, [data-validate] select, [data-validate] textarea').forEach(function (inp) {
       inp.addEventListener('input', function () { inp.closest('.field').classList.remove('invalid'); });
@@ -223,6 +239,106 @@
       if (!valid) ok = false;
     });
     return ok;
+  };
+
+  /* ---- Error banner (shared by the Contact form and the modal) ---- */
+  function errorBox(form) {
+    var box = form.querySelector('.form-error');
+    if (!box) {
+      box = document.createElement('div');
+      box.className = 'form-error';
+      box.setAttribute('role', 'alert');
+      var btn = form.querySelector('[type="submit"]');
+      if (btn && btn.parentNode) btn.parentNode.insertBefore(box, btn);
+      else form.appendChild(box);
+    }
+    return box;
+  }
+
+  window.showMedXFormError = function (form, message) {
+    var box = errorBox(form);
+    box.textContent = message;
+    box.style.display = 'block';
+  };
+
+  window.clearMedXFormError = function (form) {
+    var box = form.querySelector('.form-error');
+    if (box) box.style.display = 'none';
+  };
+
+  /* ---- Submit an enquiry to the send-inquiry Edge Function ---- */
+  window.submitMedXInquiry = function (form, source) {
+    if (!CONFIG.supabaseUrl) {
+      return Promise.reject(new Error(NOT_CONFIGURED));
+    }
+
+    function val(name) {
+      var el = form.querySelector('[name="' + name + '"]');
+      return el ? (el.value || '').trim() : '';
+    }
+
+    var headers = { 'Content-Type': 'application/json' };
+    if (CONFIG.supabaseAnonKey) {
+      headers['apikey'] = CONFIG.supabaseAnonKey;
+      headers['Authorization'] = 'Bearer ' + CONFIG.supabaseAnonKey;
+    }
+
+    var url = CONFIG.supabaseUrl.replace(/\/$/, '') +
+              '/functions/v1/' + (CONFIG.functionName || 'send-inquiry');
+
+    return fetch(url, {
+      method: 'POST',
+      headers: headers,
+      body: JSON.stringify({
+        first_name:     val('fname'),
+        last_name:      val('lname'),
+        email:          val('email'),
+        phone:          val('phone'),
+        service:        val('service'),
+        visit_type:     val('visit'),
+        preferred_date: val('date'),
+        preferred_time: val('time'),
+        message:        val('message'),
+        company:        val('company'),   // honeypot - real people leave it empty
+        source:         source || 'contact',
+        page_url:       window.location.href
+      })
+    }).then(function (res) {
+      return res.json().catch(function () { return {}; }).then(function (data) {
+        if (!res.ok) throw new Error(data.error || PHONE_FALLBACK);
+        return data;
+      });
+    }, function () {
+      // Network/DNS failure never reaches the .then above.
+      throw new Error(PHONE_FALLBACK);
+    });
+  };
+
+  /* ---- Wire a form to submit for real ---- */
+  window.wireMedXForm = function (form, source, onSuccess) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      if (!window.validateMedXForm(form)) {
+        var bad = form.querySelector('.field.invalid input, .field.invalid select, .field.invalid textarea');
+        if (bad) bad.focus();
+        return;
+      }
+
+      var btn = form.querySelector('[type="submit"]');
+      var label = btn ? btn.innerHTML : '';
+      window.clearMedXFormError(form);
+      if (btn) { btn.disabled = true; btn.textContent = 'Sending...'; }
+
+      window.submitMedXInquiry(form, source)
+        .then(function () { onSuccess(); })
+        .catch(function (err) {
+          window.showMedXFormError(form, (err && err.message) || PHONE_FALLBACK);
+        })
+        .then(function () {
+          if (btn) { btn.disabled = false; btn.innerHTML = label; }
+        });
+    });
   };
 })();
 
