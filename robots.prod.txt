@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /Dashboard.html
+Disallow: /screenshots/
+
+Sitemap: https://medxscottsdale.com/sitemap.xml

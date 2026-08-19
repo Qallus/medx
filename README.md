@@ -38,3 +38,24 @@ The repo ships a `Dockerfile` that bakes the site into `nginx:1.27-alpine`.
 
 `nginx.conf` serves `Home.html` at `/`, redirects `/index.html` there, and
 resolves extensionless links such as `/About` to `About.html`.
+
+### Domains and search indexing
+
+The container is indexable **only** on the production hostnames. Everything
+else — the review domain `app.medxscottsdale.com`, the bare VPS IP, any Coolify
+preview URL — gets `X-Robots-Tag: noindex, nofollow` plus a disallow-all
+`robots.txt`, so the client-review copy cannot be indexed alongside the real
+site. The allowed hosts live in the `$is_prod_host` map at the top of
+`nginx.conf`:
+
+```nginx
+map $host $is_prod_host {
+    default                 0;
+    medxscottsdale.com      1;
+    www.medxscottsdale.com  1;
+}
+```
+
+When the site moves from review to production, point `medxscottsdale.com` at
+the same Coolify application and the map flips it to indexable automatically —
+no other change required.
