@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Medication &amp; Treatments — Med X Scottsdale</title>
+<meta name="description" content="Outpatient detox services in Scottsdale, AZ: opioid and alcohol detox, buprenorphine, naltrexone, IV therapy, and polysubstance care — in person or telemedicine." />
+<script>
+  (function(){try{var t=localStorage.getItem('medx-theme')||'dark';var r=document.documentElement;r.classList.remove('dark','light');r.classList.add(t);}catch(e){}})();
+</script>
+<link rel="stylesheet" href="css/theme.css" />
+<link rel="stylesheet" href="css/medx-fields.css" />
+<style>
+  .page-hero { position: relative; overflow: clip; padding-top: clamp(56px, 8vw, 90px); padding-bottom: clamp(40px, 6vw, 64px); }
+  .page-hero-bg { position:absolute; inset:0; z-index:0; pointer-events:none;
+    background-image: radial-gradient(50% 60% at 50% -10%, hsl(var(--primary) / 0.14), transparent 70%); }
+  .page-hero .container { position: relative; z-index: 1; }
+  .crumbs { font-size: 0.85rem; color: hsl(var(--muted-foreground)); display:flex; gap:0.5rem; align-items:center; margin-bottom:1.4rem; }
+  .crumbs a:hover { color: hsl(var(--primary)); }
+
+  .svc-detail { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 4.5rem); align-items: center; padding-block: clamp(48px, 7vw, 88px); }
+  .svc-detail:nth-child(even) .svc-detail-media { order: -1; }
+  .svc-detail + .svc-detail { border-top: 1px solid hsl(var(--border)); }
+  .svc-detail .svc-ico { width: 52px; height: 52px; border-radius: 13px; display: grid; place-items: center; background: hsl(var(--primary-soft)); color: hsl(var(--primary)); margin-bottom: 1.3rem; }
+  .svc-detail .svc-ico svg { width: 26px; height: 26px; }
+  .svc-detail h2 { font-size: clamp(1.7rem, 3vw, 2.3rem); }
+  .svc-detail ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; margin-top: 1.5rem; }
+  .svc-detail ul li { display: flex; gap: 0.7rem; align-items: flex-start; font-size: 0.97rem; }
+  .svc-detail ul li svg { width: 18px; height: 18px; color: hsl(var(--primary)); flex: none; margin-top: 3px; }
+  .svc-detail-media .placeholder-img { aspect-ratio: 5/4; }
+  .svc-detail-media .svc-photo { aspect-ratio: 5/4; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid hsl(var(--border)); box-shadow: var(--shadow); }
+  .svc-detail-media .svc-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+  .approach { display:grid; grid-template-columns: repeat(3,1fr); gap:1.1rem; }
+  .approach .card .ai { width:42px;height:42px;border-radius:11px;display:grid;place-items:center;background:hsl(var(--primary-soft));color:hsl(var(--primary));margin-bottom:1rem;}
+  .approach .card .ai svg{width:21px;height:21px;}
+
+  .faq { max-width: 760px; margin-inline: auto; }
+  .acc-item { border-bottom: 1px solid hsl(var(--border)); }
+  .acc-head { width:100%; display:flex; justify-content:space-between; align-items:center; gap:1rem; padding: 1.4rem 0; text-align:left; font-family: var(--font-serif); font-size: 1.2rem; }
+  .acc-head .pm { width:26px;height:26px;flex:none;border-radius:7px;border:1px solid hsl(var(--border));display:grid;place-items:center;transition:.25s; }
+  .acc-item.open .acc-head .pm { background:hsl(var(--primary)); border-color:hsl(var(--primary)); color:#fff; transform: rotate(90deg); }
+  .acc-head .pm svg{width:14px;height:14px;}
+  .acc-body { max-height:0; overflow:hidden; transition: max-height .35s ease, padding .35s ease; }
+  .acc-item.open .acc-body { max-height: 320px; padding-bottom: 1.4rem; }
+  .acc-body p { color: hsl(var(--muted-foreground)); }
+
+  @media (max-width: 900px) {
+    .svc-detail { grid-template-columns: 1fr; gap: 1.8rem; }
+    .svc-detail:nth-child(even) .svc-detail-media { order: 0; }
+    .approach { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 768px) { .hide-sm { display:none !important; } }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="Home.html" class="brand" aria-label="Med X Scottsdale home">
+      <img class="logo-light" src="assets/med_x_logo.png" alt="Med X Scottsdale" />
+      <img class="logo-dark" src="assets/med_x_logo_white.png" alt="Med X Scottsdale" />
+    </a>
+    <nav class="nav-links">
+      <a class="nav-link nl-home" href="Home.html">Home</a>
+      <div class="nav-item"><a class="nav-link nl-mt active" href="Services.html">Medication &amp; Treatments<svg class="nl-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></a>
+        <div class="nav-drop nav-mega"><div class="drop-panel"><div class="mega-grid"><a class="mega-link" href="Opioid Detox.html"><span class="ml-t">Opioid Detox</span><span class="ml-d">Safe withdrawal from fentanyl, heroin &amp; painkillers</span></a><a class="mega-link" href="Buprenorphine Treatment.html"><span class="ml-t">Buprenorphine Treatment</span><span class="ml-d">Suboxone-based MAT that quiets cravings</span></a><a class="mega-link" href="Naltrexone Treatment.html"><span class="ml-t">Naltrexone Treatment</span><span class="ml-d">Non-addictive craving &amp; relapse protection</span></a><a class="mega-link" href="Alcohol Detox.html"><span class="ml-t">Alcohol Detox</span><span class="ml-d">Medically supervised alcohol withdrawal</span></a><a class="mega-link" href="IV Treatment.html"><span class="ml-t">IV Treatment</span><span class="ml-d">Hydration &amp; nutrients that speed recovery</span></a><a class="mega-link" href="Polysubstance Detox.html"><span class="ml-t">Polysubstance Detox</span><span class="ml-d">One coordinated plan for multiple substances</span></a><a class="mega-link" href="Vivitrol Alcohol Treatment.html"><span class="ml-t">Vivitrol — Alcohol Treatment</span><span class="ml-d">Monthly injection that curbs alcohol cravings</span></a><a class="mega-link" href="Vivitrol Opioid Treatment.html"><span class="ml-t">Vivitrol — Opioid Treatment</span><span class="ml-d">Monthly shot that blocks opioid effects</span></a></div><div class="mega-foot">Not sure where to start? <a href="tel:4802190055">Call 480-219-0055</a> — we’ll point you in the right direction.</div></div></div>
+      </div>
+      <div class="nav-item"><button type="button" class="nav-link nl-disc" aria-haspopup="true">Discover<svg class="nl-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="nav-drop"><div class="drop-panel drop-list"><a href="About.html">About Us</a><a href="Our Team.html">Our Team</a><a href="In The News.html">In The News</a></div></div>
+      </div>
+      <a class="nav-link nl-contact" href="Contact.html">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn theme-toggle" data-theme-toggle aria-label="Toggle dark mode">
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M6.3 17.7l-1.4 1.4M19.1 4.9l-1.4 1.4"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+      <a href="tel:4802190055" class="btn btn-outline" style="padding-inline:1em;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.5-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2z"/></svg><span class="hide-sm">480-219-0055</span></a>
+      <a href="Contact.html" class="btn btn-primary hide-sm">Request appointment</a>
+      <button class="icon-btn menu-btn" data-menu-toggle aria-label="Menu">
+        <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:none"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<nav class="mobile-menu" aria-label="Mobile">
+  <a href="Home.html">Home</a>
+  <div class="mm-group"><button type="button" class="mm-head">Medication &amp; Treatments<svg class="nl-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button><div class="mm-sub"><a href="Opioid Detox.html">Opioid Detox</a><a href="Buprenorphine Treatment.html">Buprenorphine Treatment</a><a href="Naltrexone Treatment.html">Naltrexone Treatment</a><a href="Alcohol Detox.html">Alcohol Detox</a><a href="IV Treatment.html">IV Treatment</a><a href="Polysubstance Detox.html">Polysubstance Detox</a><a href="Vivitrol Alcohol Treatment.html">Vivitrol — Alcohol Treatment</a><a href="Vivitrol Opioid Treatment.html">Vivitrol — Opioid Treatment</a></div></div>
+  <div class="mm-group"><button type="button" class="mm-head">Discover<svg class="nl-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button><div class="mm-sub"><a href="About.html">About Us</a><a href="Our Team.html">Our Team</a><a href="In The News.html">In The News</a></div></div>
+  <a href="Contact.html">Contact</a>
+  <div class="mm-cta">
+    <a href="Contact.html" class="btn btn-primary btn-lg btn-block">Request appointment</a>
+    <a href="tel:4802190055" class="btn btn-outline btn-lg btn-block">Call 480-219-0055</a>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="container">
+    <div class="crumbs reveal in"><a href="Home.html">Home</a><span>/</span><span style="color:hsl(var(--foreground))">Medication &amp; Treatments</span></div>
+    <span class="eyebrow reveal in">Medication &amp; treatments</span>
+    <h1 class="h-display reveal in" style="margin-top:1rem; max-width:18ch;">Detox care, <span class="serif-italic text-accent">customized</span> to your recovery</h1>
+    <p class="lead reveal in" data-delay="1" style="margin-top:1.2rem; max-width:46rem;">Every plan is medically supervised and built around your needs, your comfort, and your privacy — available in our Scottsdale office or by telemedicine across Arizona.</p>
+    <div class="flex gap-3 reveal in" data-delay="2" style="margin-top:2rem; flex-wrap:wrap;">
+      <a href="Contact.html" class="btn btn-primary btn-lg">Request an appointment<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="tel:4802190055" class="btn btn-outline btn-lg">Call 480-219-0055</a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE DETAILS -->
+<div class="container">
+  <!-- Opioid -->
+  <section class="svc-detail" id="opioid">
+    <div class="reveal">
+      <span class="svc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m10.5 20.5-7-7a5 5 0 0 1 7-7l.5.5.5-.5a5 5 0 0 1 7 7l-7 7a1 1 0 0 1-1 0z"/><path d="M3.5 13.5h5l1.5-3 2 5 1.5-2h4.5"/></svg></span>
+      <h2>Opioid Detox</h2>
+      <p class="muted" style="margin-top:1rem;">A safe, medically managed withdrawal from heroin, fentanyl, and prescription opioids. We ease symptoms and protect your health while your body clears, so the hardest part feels far more manageable.</p>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Comfort-focused symptom management</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Physician oversight from day one</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Smooth transition into ongoing care</li>
+      </ul>
+      <a href="Opioid Detox.html" class="btn btn-outline" style="margin-top:1.6rem;">Learn more<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <div class="svc-detail-media reveal" data-delay="1"><div class="svc-photo photo-zoom"><img src="https://medxscottsdale.com/wp-content/uploads/2021/04/Opiod_detox_v.2_-400x300_px-786x578.png" alt="Opioid detox care at Med X" loading="lazy" /></div></div>
+  </section>
+
+  <!-- Alcohol -->
+  <section class="svc-detail" id="alcohol">
+    <div class="reveal">
+      <span class="svc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2h8M9 2v5.3a4 4 0 0 1-.6 2.1l-3.8 6A3 3 0 0 0 7 20h10a3 3 0 0 0 2.4-4.6l-3.8-6a4 4 0 0 1-.6-2.1V2"/><path d="M6.5 13h11"/></svg></span>
+      <h2>Alcohol Detox</h2>
+      <p class="muted" style="margin-top:1rem;">Alcohol withdrawal can be dangerous without supervision. Our team manages it carefully — reducing risk, calming symptoms, and keeping you safe and comfortable as you stabilize.</p>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Risk-aware medical monitoring</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Medication to ease withdrawal</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Support that protects long-term sobriety</li>
+      </ul>
+      <a href="Alcohol Detox.html" class="btn btn-outline" style="margin-top:1.6rem;">Learn more<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <div class="svc-detail-media reveal" data-delay="1"><div class="svc-photo photo-zoom"><img src="https://medxscottsdale.com/wp-content/uploads/2021/04/Alcohol_detox_v.1_-400x300_px-786x578.png" alt="Alcohol detox care at Med X" loading="lazy" /></div></div>
+  </section>
+
+  <!-- Buprenorphine -->
+  <section class="svc-detail" id="buprenorphine">
+    <div class="reveal">
+      <span class="svc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m10.5 6.5 7 7M4 14l6-6a3.5 3.5 0 0 1 5 5l-6 6a3.5 3.5 0 0 1-5-5z"/><path d="m14 4 6 6"/></svg></span>
+      <h2>Buprenorphine &amp; Suboxone</h2>
+      <p class="muted" style="margin-top:1rem;">Medication-assisted treatment that quiets cravings and prevents relapse. We handle induction and ongoing management so your recovery stays steady, predictable, and under expert care.</p>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>In-office or telemedicine induction</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Ongoing dosing &amp; refills managed for you</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Strong protection against relapse</li>
+      </ul>
+      <a href="Buprenorphine Treatment.html" class="btn btn-outline" style="margin-top:1.6rem;">Learn more<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <div class="svc-detail-media reveal" data-delay="1"><div class="svc-photo photo-zoom"><img src="https://medxscottsdale.com/wp-content/uploads/2021/04/Buprenorphine_treatment_v.2_-400x300_px-786x578.png" alt="Buprenorphine and Suboxone treatment at Med X" loading="lazy" /></div></div>
+  </section>
+
+  <!-- Naltrexone -->
+  <section class="svc-detail" id="naltrexone">
+    <div class="reveal">
+      <span class="svc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
+      <h2>Naltrexone &amp; Vivitrol</h2>
+      <p class="muted" style="margin-top:1rem;">Oral naltrexone and the monthly Vivitrol injection block the effects of opioids and reduce alcohol cravings — a powerful, non-addictive tool to keep recovery on track between visits.</p>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Monthly injection or daily oral options</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Non-addictive, blocks opioid effects</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Reduces alcohol cravings</li>
+      </ul>
+      <a href="Naltrexone Treatment.html" class="btn btn-outline" style="margin-top:1.6rem;">Learn more<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <div class="svc-detail-media reveal" data-delay="1"><div class="svc-photo photo-zoom"><img src="https://medxscottsdale.com/wp-content/uploads/2021/04/Naltrexone_Treatment_400-x-300-PX-786x578.png" alt="Naltrexone and Vivitrol therapy at Med X" loading="lazy" /></div></div>
+  </section>
+
+
+  <!-- Vivitrol Alcohol -->
+  <section class="svc-detail" id="vivitrol-alcohol">
+    <div class="reveal">
+      <span class="svc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 2 4 4"/><path d="m17 7 3-3"/><path d="M19 9 9 19l-4 1 1-4L16 6z"/><path d="m13 9 2 2"/></svg></span>
+      <h2>Vivitrol — Alcohol Treatment</h2>
+      <p class="muted" style="margin-top:1rem;">A once-monthly extended-release naltrexone injection that reduces alcohol cravings — one decision a month instead of thirty daily ones.</p>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>One injection covers a full month</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Non-addictive and non-habit-forming</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Administered in-office by our clinical team</li>
+      </ul>
+      <a href="Vivitrol Alcohol Treatment.html" class="btn btn-outline" style="margin-top:1.6rem;">Learn more<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <div class="svc-detail-media reveal" data-delay="1"><div class="svc-photo photo-zoom"><img src="assets/photos/medx_lobby_1.webp" alt="Vivitrol treatment for alcohol at Med X" loading="lazy" /></div></div>
+  </section>
+
+  <!-- Vivitrol Opioid -->
+  <section class="svc-detail" id="vivitrol-opioid">
+    <div class="reveal">
+      <span class="svc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5z"/><path d="m9 12 2 2 4-4"/></svg></span>
+      <h2>Vivitrol — Opioid Treatment</h2>
+      <p class="muted" style="margin-top:1rem;">A monthly injection that blocks the effects of opioids entirely — powerful relapse protection once detox is complete.</p>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Blocks opioid effects for about a month</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Reduces cravings and relapse risk</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>We manage the required detox first</li>
+      </ul>
+      <a href="Vivitrol Opioid Treatment.html" class="btn btn-outline" style="margin-top:1.6rem;">Learn more<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <div class="svc-detail-media reveal" data-delay="1"><div class="svc-photo photo-zoom"><img src="assets/photos/medx_patient_room_1.webp" alt="Vivitrol treatment for opioid recovery at Med X" loading="lazy" /></div></div>
+  </section>
+
+  <!-- IV -->
+  <section class="svc-detail" id="iv">
+    <div class="reveal">
+      <span class="svc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6M9 4h6M10 8h4l1 7a3 3 0 0 1-6 0z"/><path d="M12 18v4"/></svg></span>
+      <h2>IV Therapy</h2>
+      <p class="muted" style="margin-top:1rem;">Restorative IV hydration and nutrient infusions replenish what dependence depletes — helping you feel stronger, clearer, and more comfortable as your body recovers.</p>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Rehydration &amp; vitamin replenishment</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Eases fatigue and discomfort</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Supports faster physical recovery</li>
+      </ul>
+      <a href="IV Treatment.html" class="btn btn-outline" style="margin-top:1.6rem;">Learn more<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <div class="svc-detail-media reveal" data-delay="1"><div class="svc-photo photo-zoom"><img src="https://medxscottsdale.com/wp-content/uploads/2021/04/IV_treatments_v.1_-400x300_px-786x578.png" alt="IV therapy at Med X" loading="lazy" /></div></div>
+  </section>
+
+  <!-- Polysubstance -->
+  <section class="svc-detail" id="polysubstance">
+    <div class="reveal">
+      <span class="svc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="9" r="3"/><circle cx="17" cy="9" r="3"/><circle cx="12" cy="16" r="3"/></svg></span>
+      <h2>Polysubstance Detox</h2>
+      <p class="muted" style="margin-top:1rem;">Dependence on more than one substance needs coordinated, careful care. We build a single, customized plan that addresses everything at once — safely, and without overwhelm.</p>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>One coordinated treatment plan</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Carefully sequenced &amp; monitored</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Built entirely around your needs</li>
+      </ul>
+      <a href="Polysubstance Detox.html" class="btn btn-outline" style="margin-top:1.6rem;">Learn more<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <div class="svc-detail-media reveal" data-delay="1"><div class="svc-photo photo-zoom"><img src="https://medxscottsdale.com/wp-content/uploads/2021/04/Alcohol__Drug_Detox_400-x-300-PX-786x578.png" alt="Polysubstance detox care at Med X" loading="lazy" /></div></div>
+  </section>
+</div>
+
+<!-- APPROACH -->
+<section class="section" style="background:hsl(var(--surface)); border-block:1px solid hsl(var(--border));">
+  <div class="container">
+    <div class="center reveal" style="max-width:40rem;margin-inline:auto;margin-bottom:3rem;">
+      <span class="eyebrow center">The Med X difference</span>
+      <h2 class="h2" style="margin-top:1rem;">Care designed around you</h2>
+    </div>
+    <div class="approach">
+      <div class="card reveal"><span class="ai"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span><h3 class="h3" style="font-size:1.3rem;">Private &amp; discreet</h3><p class="muted" style="margin-top:.6rem;">We specialize in anonymity. Your care stays confidential from your first call onward.</p></div>
+      <div class="card reveal" data-delay="1"><span class="ai"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></span><h3 class="h3" style="font-size:1.3rem;">Flexible &amp; convenient</h3><p class="muted" style="margin-top:.6rem;">Single appointments, telemedicine options, and scheduling that respects your life.</p></div>
+      <div class="card reveal" data-delay="2"><span class="ai"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 14 3-3 3 3 5-5"/></svg></span><h3 class="h3" style="font-size:1.3rem;">Honest &amp; affordable</h3><p class="muted" style="margin-top:.6rem;">Transparent pricing with no surprise fees — quality detox that costs less than expected.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section">
+  <div class="container">
+    <div class="center reveal" style="max-width:40rem;margin-inline:auto;margin-bottom:2.6rem;">
+      <span class="eyebrow center">Questions</span>
+      <h2 class="h2" style="margin-top:1rem;">Things people often ask</h2>
+    </div>
+    <div class="faq reveal" data-accordion>
+      <div class="acc-item open">
+        <button class="acc-head">Is outpatient detox safe?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></span></button>
+        <div class="acc-body"><p>Yes. For many patients, medically supervised outpatient detox is a safe, effective option. Your physician evaluates your history and substance use to confirm outpatient care is appropriate and to build the right plan for you.</p></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-head">How much does treatment cost?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></span></button>
+        <div class="acc-body"><p>Less than most people expect. We keep pricing transparent and straightforward, with no surprise fees. Reach out and we'll give you a clear answer about cost and any coverage before you commit.</p></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-head">Can I do this by telemedicine?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></span></button>
+        <div class="acc-body"><p>In many cases, yes. We offer secure telemedicine visits across Arizona so you can start or continue treatment from the comfort and privacy of home, with the same physician-led care.</p></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-head">Will my treatment be confidential?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></span></button>
+        <div class="acc-body"><p>Absolutely. Confidentiality is at the core of Med X. We specialize in anonymity and protect your privacy at every step — from a discreet location to HIPAA-protected telemedicine.</p></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-head">How soon can I be seen?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></span></button>
+        <div class="acc-body"><p>Often the same week. Getting started is simple — call us or request an appointment online, and we'll find a time that works for you as quickly as possible.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="card reveal center" style="padding:clamp(2.6rem,6vw,4.2rem); background:hsl(var(--primary-soft)); border-color:hsl(var(--primary)/0.3);">
+      <h2 class="h1" style="max-width:20ch; margin-inline:auto;">Ready when you are</h2>
+      <p class="lead" style="margin:1rem auto 0; max-width:38rem;">Start a confidential conversation today. We'll help you find the right path forward.</p>
+      <div class="flex gap-3 items-center" style="justify-content:center; flex-wrap:wrap; margin-top:2rem;">
+        <a href="Contact.html" class="btn btn-primary btn-lg">Request an appointment<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="tel:4802190055" class="btn btn-outline btn-lg">480-219-0055</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="Home.html" class="brand" style="margin-bottom:1.1rem;">
+          <img class="logo-light" src="assets/med_x_logo.png" alt="Med X Scottsdale" style="height:42px;" />
+          <img class="logo-dark" src="assets/med_x_logo_white.png" alt="Med X Scottsdale" style="height:42px;" />
+        </a>
+        <p class="muted" style="font-size:0.92rem; max-width:30ch;">Confidential, medically supervised outpatient detox in Scottsdale, Arizona — promoting initial recovery and long-term sobriety.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <div class="footer-links">
+          <a href="Home.html">Home</a><a href="Services.html">Medication &amp; Treatments</a><a href="About.html">About Us</a><a href="Our Team.html">Our Team</a><a href="In The News.html">In The News</a><a href="Contact.html">Contact</a>
+        </div>
+      </div>
+      <div>
+        <h4>Treatments</h4>
+        <div class="footer-links">
+          <a href="Opioid Detox.html">Opioid Detox</a><a href="Buprenorphine Treatment.html">Buprenorphine Treatment</a><a href="Naltrexone Treatment.html">Naltrexone Treatment</a><a href="Alcohol Detox.html">Alcohol Detox</a><a href="IV Treatment.html">IV Treatment</a><a href="Polysubstance Detox.html">Polysubstance Detox</a><a href="Vivitrol Alcohol Treatment.html">Vivitrol — Alcohol Treatment</a><a href="Vivitrol Opioid Treatment.html">Vivitrol — Opioid Treatment</a>
+        </div>
+      </div>
+      <div><h4>Contact</h4><div class="footer-links">
+        <a href="tel:4802190055">480-219-0055</a>
+        <a href="mailto:info@medxscottsdale.com">info@medxscottsdale.com</a>
+        <a href="https://maps.google.com/?q=11390+E+Via+Linda+Suite+103+Scottsdale+AZ+85259" target="_blank" rel="noopener">11390 E. Via Linda, Ste 103<br />Scottsdale, AZ 85259</a>
+        <span class="muted" style="font-size:0.9rem;">Mon–Fri · 9am–5pm</span>
+      </div></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Med X Scottsdale. All rights reserved.</span>
+      <span class="flex gap-4"><a href="Privacy Policy.html" class="muted">Privacy Policy</a><a href="Terms of Service.html" class="muted">Terms of Service</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/medx-fields.js"></script>
+<script src="js/site.js"></script>
+</body>
+</html>

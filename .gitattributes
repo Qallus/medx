@@ -1,0 +1,17 @@
+# Normalise text to LF in the repository; Docker builds on Linux.
+* text=auto eol=lf
+
+# Files that must stay LF even on Windows checkouts
+Dockerfile  text eol=lf
+nginx.conf  text eol=lf
+*.sh        text eol=lf
+
+# Binary assets - never touch
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.webp binary
+*.gif  binary
+*.ico  binary
+*.woff  binary
+*.woff2 binary

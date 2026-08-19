@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Contact — Med X Scottsdale</title>
+<meta name="description" content="Request a confidential appointment at Med X Scottsdale, or call 480-219-0055. Outpatient medical detox in Scottsdale, AZ." />
+<script>
+  (function(){try{var t=localStorage.getItem('medx-theme')||'dark';var r=document.documentElement;r.classList.remove('dark','light');r.classList.add(t);}catch(e){}})();
+</script>
+<link rel="stylesheet" href="css/theme.css" />
+<link rel="stylesheet" href="css/medx-fields.css" />
+<style>
+  .page-hero { position: relative; overflow: clip; padding-top: clamp(56px, 8vw, 90px); padding-bottom: clamp(28px, 4vw, 44px); }
+  .page-hero-bg { position:absolute; inset:0; z-index:0; pointer-events:none; background-image: radial-gradient(50% 60% at 50% -10%, hsl(var(--primary) / 0.14), transparent 70%); }
+  .page-hero .container { position: relative; z-index: 1; }
+  .crumbs { font-size: 0.85rem; color: hsl(var(--muted-foreground)); display:flex; gap:0.5rem; align-items:center; margin-bottom:1.4rem; }
+  .crumbs a:hover { color: hsl(var(--primary)); }
+
+  .contact-grid { display:grid; grid-template-columns: 1fr 0.85fr; gap: clamp(2rem,5vw,3.5rem); align-items:start; }
+  .form-card { padding: clamp(1.6rem, 3vw, 2.4rem); }
+  .form-row { display:grid; grid-template-columns: 1fr 1fr; gap:1.1rem; }
+  .form-stack { display:flex; flex-direction:column; gap:1.1rem; }
+  .privacy-note { display:flex; gap:0.6rem; align-items:flex-start; font-size:0.84rem; color:hsl(var(--muted-foreground)); margin-top:0.4rem; }
+  .privacy-note svg { width:16px; height:16px; color:hsl(var(--primary)); flex:none; margin-top:2px; }
+
+  .info-card + .info-card { margin-top: 1.1rem; }
+  .info-item { display:flex; gap:0.9rem; align-items:flex-start; }
+  .info-item + .info-item { margin-top:1.2rem; padding-top:1.2rem; border-top:1px solid hsl(var(--border)); }
+  .info-item .ii { width:40px;height:40px;border-radius:10px;background:hsl(var(--primary-soft));color:hsl(var(--primary));display:grid;place-items:center;flex:none;}
+  .info-item .ii svg{width:19px;height:19px;}
+  .info-item .l { font-size:0.78rem; text-transform:uppercase; letter-spacing:0.1em; color:hsl(var(--muted-foreground)); font-weight:600; }
+  .info-item a, .info-item span.v { font-size:1rem; color:hsl(var(--foreground)); font-weight:500; }
+  .info-item a:hover { color:hsl(var(--primary)); }
+
+  .map { aspect-ratio: 16/10; border-radius: var(--radius); border:1px solid hsl(var(--border)); overflow:hidden; position:relative; background:
+    linear-gradient(135deg, hsl(var(--muted)), hsl(var(--accent)));
+    display:grid; place-items:center; }
+  .map .pin { width:46px;height:46px;border-radius:50% 50% 50% 0; background:hsl(var(--primary)); transform:rotate(-45deg); display:grid;place-items:center; box-shadow: var(--shadow-lg); }
+  .map .pin svg{ transform:rotate(45deg); width:20px;height:20px;color:#fff; }
+  .map .ml { position:absolute; bottom:14px; left:14px; right:14px; background:hsl(var(--card)); border:1px solid hsl(var(--border)); border-radius:var(--radius-sm); padding:.7rem .9rem; font-size:.84rem; display:flex; justify-content:space-between; align-items:center; gap:.6rem; }
+
+  /* Success state */
+  .success { display:none; text-align:center; padding:2rem 1rem; }
+  .form-card.sent .form-stack, .form-card.sent .form-foot { display:none; }
+  .form-card.sent .success { display:block; }
+  .success .ok { width:64px;height:64px;border-radius:50%; background:hsl(var(--success)/0.15); color:hsl(var(--success)); display:grid;place-items:center; margin:0 auto 1.3rem; }
+  .success .ok svg{ width:30px;height:30px; }
+
+  @media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 560px) { .form-row { grid-template-columns: 1fr; } }
+  @media (max-width: 768px) { .hide-sm { display:none !important; } }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="Home.html" class="brand" aria-label="Med X Scottsdale home">
+      <img class="logo-light" src="assets/med_x_logo.png" alt="Med X Scottsdale" />
+      <img class="logo-dark" src="assets/med_x_logo_white.png" alt="Med X Scottsdale" />
+    </a>
+    <nav class="nav-links">
+      <a class="nav-link nl-home" href="Home.html">Home</a>
+      <div class="nav-item"><a class="nav-link nl-mt" href="Services.html">Medication &amp; Treatments<svg class="nl-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></a>
+        <div class="nav-drop nav-mega"><div class="drop-panel"><div class="mega-grid"><a class="mega-link" href="Opioid Detox.html"><span class="ml-t">Opioid Detox</span><span class="ml-d">Safe withdrawal from fentanyl, heroin &amp; painkillers</span></a><a class="mega-link" href="Buprenorphine Treatment.html"><span class="ml-t">Buprenorphine Treatment</span><span class="ml-d">Suboxone-based MAT that quiets cravings</span></a><a class="mega-link" href="Naltrexone Treatment.html"><span class="ml-t">Naltrexone Treatment</span><span class="ml-d">Non-addictive craving &amp; relapse protection</span></a><a class="mega-link" href="Alcohol Detox.html"><span class="ml-t">Alcohol Detox</span><span class="ml-d">Medically supervised alcohol withdrawal</span></a><a class="mega-link" href="IV Treatment.html"><span class="ml-t">IV Treatment</span><span class="ml-d">Hydration &amp; nutrients that speed recovery</span></a><a class="mega-link" href="Polysubstance Detox.html"><span class="ml-t">Polysubstance Detox</span><span class="ml-d">One coordinated plan for multiple substances</span></a><a class="mega-link" href="Vivitrol Alcohol Treatment.html"><span class="ml-t">Vivitrol — Alcohol Treatment</span><span class="ml-d">Monthly injection that curbs alcohol cravings</span></a><a class="mega-link" href="Vivitrol Opioid Treatment.html"><span class="ml-t">Vivitrol — Opioid Treatment</span><span class="ml-d">Monthly shot that blocks opioid effects</span></a></div><div class="mega-foot">Not sure where to start? <a href="tel:4802190055">Call 480-219-0055</a> — we’ll point you in the right direction.</div></div></div>
+      </div>
+      <div class="nav-item"><button type="button" class="nav-link nl-disc" aria-haspopup="true">Discover<svg class="nl-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="nav-drop"><div class="drop-panel drop-list"><a href="About.html">About Us</a><a href="Our Team.html">Our Team</a><a href="In The News.html">In The News</a></div></div>
+      </div>
+      <a class="nav-link nl-contact active" href="Contact.html">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn theme-toggle" data-theme-toggle aria-label="Toggle dark mode">
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M6.3 17.7l-1.4 1.4M19.1 4.9l-1.4 1.4"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+      <a href="tel:4802190055" class="btn btn-outline" style="padding-inline:1em;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.5-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2z"/></svg><span class="hide-sm">480-219-0055</span></a>
+      <a href="Contact.html" class="btn btn-primary hide-sm">Request appointment</a>
+      <button class="icon-btn menu-btn" data-menu-toggle aria-label="Menu">
+        <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:none"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<nav class="mobile-menu" aria-label="Mobile">
+  <a href="Home.html">Home</a>
+  <div class="mm-group"><button type="button" class="mm-head">Medication &amp; Treatments<svg class="nl-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button><div class="mm-sub"><a href="Opioid Detox.html">Opioid Detox</a><a href="Buprenorphine Treatment.html">Buprenorphine Treatment</a><a href="Naltrexone Treatment.html">Naltrexone Treatment</a><a href="Alcohol Detox.html">Alcohol Detox</a><a href="IV Treatment.html">IV Treatment</a><a href="Polysubstance Detox.html">Polysubstance Detox</a><a href="Vivitrol Alcohol Treatment.html">Vivitrol — Alcohol Treatment</a><a href="Vivitrol Opioid Treatment.html">Vivitrol — Opioid Treatment</a></div></div>
+  <div class="mm-group"><button type="button" class="mm-head">Discover<svg class="nl-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button><div class="mm-sub"><a href="About.html">About Us</a><a href="Our Team.html">Our Team</a><a href="In The News.html">In The News</a></div></div>
+  <a class="active" href="Contact.html">Contact</a>
+  <div class="mm-cta">
+    <a href="Contact.html" class="btn btn-primary btn-lg btn-block">Request appointment</a>
+    <a href="tel:4802190055" class="btn btn-outline btn-lg btn-block">Call 480-219-0055</a>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="container">
+    <div class="crumbs reveal in"><a href="Home.html">Home</a><span>/</span><span style="color:hsl(var(--foreground))">Contact</span></div>
+    <span class="eyebrow reveal in">Get in touch</span>
+    <h1 class="h-display reveal in" style="margin-top:1rem; max-width:18ch;">Reach out — <span class="serif-italic text-accent">confidentially</span></h1>
+    <p class="lead reveal in" data-delay="1" style="margin-top:1.2rem; max-width:46rem;">Request an appointment below or call us directly. Every conversation is private, judgment-free, and there's no pressure — just answers and support whenever you're ready.</p>
+  </div>
+</section>
+
+<!-- CONTACT GRID -->
+<section class="section-sm">
+  <div class="container contact-grid">
+    <!-- FORM -->
+    <div class="card form-card reveal" id="formCard">
+      <h2 class="h3" style="font-size:1.5rem;">Request an appointment</h2>
+      <p class="muted" style="margin:.5rem 0 1.6rem; font-size:.95rem;">Fill out the form and a member of our team will reach out within one business day.</p>
+      <form class="form-stack" id="apptForm" novalidate>
+        <div class="form-row">
+          <div class="field" data-validate>
+            <label for="fname">First name <span class="req">*</span></label>
+            <input class="input" id="fname" name="fname" type="text" data-validate="text" required placeholder="Jane" />
+            <span class="err">Please enter your first name.</span>
+          </div>
+          <div class="field" data-validate>
+            <label for="lname">Last name <span class="req">*</span></label>
+            <input class="input" id="lname" name="lname" type="text" data-validate="text" required placeholder="Doe" />
+            <span class="err">Please enter your last name.</span>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field" data-validate>
+            <label for="email">Email <span class="req">*</span></label>
+            <input class="input" id="email" name="email" type="email" data-validate="email" required placeholder="jane@email.com" />
+            <span class="err">Please enter a valid email.</span>
+          </div>
+          <div class="field" data-validate>
+            <label for="phone">Phone <span class="req">*</span></label>
+            <input class="input" id="phone" name="phone" type="tel" data-validate="phone" required placeholder="(480) 555-0123" />
+            <span class="err">Please enter a valid phone number.</span>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="service">Interested in</label>
+            <select class="select" id="service" name="service">
+              <option>Not sure yet — help me decide</option>
+              <option>Opioid Detox</option>
+              <option>Alcohol Detox</option>
+              <option>Buprenorphine / Suboxone</option>
+              <option>Naltrexone / Vivitrol</option>
+              <option>IV Therapy</option>
+              <option>Polysubstance Detox</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="visit">Visit type</label>
+            <select class="select" id="visit" name="visit">
+              <option>In person (Scottsdale)</option>
+              <option>Telemedicine</option>
+              <option>Either works</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="message">How can we help? <span class="muted" style="font-weight:400;">(optional)</span></label>
+          <textarea class="textarea" id="message" name="message" placeholder="Share anything you'd like us to know. This is completely confidential."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg btn-block" style="margin-top:.4rem;">Send request<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></svg></button>
+        <div class="privacy-note form-foot">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <span>Your information is protected and never shared. We specialize in anonymity — this is a safe, confidential first step.</span>
+        </div>
+      </form>
+      <div class="success">
+        <div class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <h2 class="h3" style="font-size:1.5rem;">Request received</h2>
+        <p class="muted" style="margin:.6rem auto 1.4rem; max-width:34ch;">Thank you for reaching out. A member of our team will contact you within one business day — confidentially.</p>
+        <a href="Home.html" class="btn btn-outline">Back to home</a>
+      </div>
+    </div>
+
+    <!-- INFO -->
+    <div class="reveal" data-delay="1">
+      <div class="card info-card">
+        <div class="info-item">
+          <span class="ii"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.5-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2z"/></svg></span>
+          <div><div class="l">Call us</div><a href="tel:4802190055">480-219-0055</a></div>
+        </div>
+        <div class="info-item">
+          <span class="ii"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg></span>
+          <div><div class="l">Email</div><a href="mailto:info@medxscottsdale.com">info@medxscottsdale.com</a></div>
+        </div>
+        <div class="info-item">
+          <span class="ii"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <div><div class="l">Visit</div><span class="v">11390 E. Via Linda, Ste 103<br />Scottsdale, AZ 85259</span></div>
+        </div>
+        <div class="info-item">
+          <span class="ii"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
+          <div><div class="l">Hours</div><span class="v">Mon–Fri · 9am – 5pm<br /><span class="muted" style="font-size:.88rem; font-weight:400;">Weekend appointments on request</span></span></div>
+        </div>
+      </div>
+      <div class="card info-card" style="padding:0; overflow:hidden;">
+        <div class="mapx" role="img" aria-label="Map showing Med X at 11390 E. Via Linda, Scottsdale">
+          <svg class="map-canvas" viewBox="0 0 800 550" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <!-- minor street grid -->
+            <g class="mx-road" stroke-width="1.5" opacity="0.75">
+              <path d="M150 0 V550 M250 0 V550 M350 0 V550 M450 0 V550 M560 0 V550 M660 0 V550 M740 0 V550" />
+              <path d="M0 95 H800 M0 215 H800 M0 360 H800 M0 490 H800" />
+            </g>
+            <!-- major roads -->
+            <g class="mx-road-2" stroke-width="4.5">
+              <path d="M30 160 H470" />
+              <path d="M30 440 H800" />
+              <path d="M40 500 H300" />
+              <!-- E Via Linda: runs east from the marker, then curves down to join E Shea Blvd -->
+              <path d="M430 247 H612 Q726 252 752 348 Q768 408 778 440" />
+              <!-- N Frank Lloyd Wright Blvd: sweeps up from the marker and wraps to meet Loop 101 -->
+              <path d="M496 247 Q392 132 250 52 Q150 8 74 58" />
+            </g>
+            <!-- freeway loop 101 -->
+            <path class="mx-fwy" stroke-width="8" d="M78 -10 L70 250 Q66 360 96 430 L120 560" />
+            <!-- labels -->
+            <text class="mx-label area" x="300" y="420" transform="rotate(0 300 420)">Scottsdale</text>
+            <text class="mx-label area" x="560" y="150">Ancala</text>
+            <text class="mx-label" x="300" y="455">E Shea Blvd</text>
+            <text class="mx-label" x="520" y="238">E Via Linda</text>
+            <text class="mx-label" x="120" y="152">E Cactus Rd</text>
+            <text class="mx-label" x="300" y="116" transform="rotate(35 300 116)">N Frank Lloyd Wright Blvd</text>
+            <!-- freeway shield -->
+            <g transform="translate(70 320)">
+              <rect class="mx-shield" x="-15" y="-13" width="30" height="26" rx="5" />
+              <text class="mx-shield-t" x="0" y="4" text-anchor="middle">101</text>
+            </g>
+          </svg>
+          <div class="map-marker">
+            <span class="mm-pulse"></span><span class="mm-pulse"></span><span class="mm-pulse"></span>
+            <span class="mm-dot"></span>
+            <span class="mm-label">Medical X · 11390 E. Via Linda</span>
+          </div>
+        </div>
+        <div class="map-actions">
+          <a class="btn btn-primary" href="https://www.google.com/maps/dir/?api=1&destination=Medical+X+Inc+11390+E+Via+Linda+Suite+103+Scottsdale+AZ+85259&destination_place_id=0x872b9feb5d1f1b6f:0xce2b0c3ea36fa18d" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>Get directions
+          </a>
+          <a class="btn btn-outline" href="https://www.google.com/maps/place/Medical+X,+Inc.+-+Dr.+Steven+Locnikar+-+MedX/@33.5901778,-111.8343029,17z/data=!4m6!3m5!1s0x872b9feb5d1f1b6f:0xce2b0c3ea36fa18d!8m2!3d33.5901778!4d-111.8343029!16s%2Fg%2F1hc8b01_v" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>View larger map
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="Home.html" class="brand" style="margin-bottom:1.1rem;">
+          <img class="logo-light" src="assets/med_x_logo.png" alt="Med X Scottsdale" style="height:42px;" />
+          <img class="logo-dark" src="assets/med_x_logo_white.png" alt="Med X Scottsdale" style="height:42px;" />
+        </a>
+        <p class="muted" style="font-size:0.92rem; max-width:30ch;">Confidential, medically supervised outpatient detox in Scottsdale, Arizona — promoting initial recovery and long-term sobriety.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <div class="footer-links">
+          <a href="Home.html">Home</a><a href="Services.html">Medication &amp; Treatments</a><a href="About.html">About Us</a><a href="Our Team.html">Our Team</a><a href="In The News.html">In The News</a><a href="Contact.html">Contact</a>
+        </div>
+      </div>
+      <div>
+        <h4>Treatments</h4>
+        <div class="footer-links">
+          <a href="Opioid Detox.html">Opioid Detox</a><a href="Buprenorphine Treatment.html">Buprenorphine Treatment</a><a href="Naltrexone Treatment.html">Naltrexone Treatment</a><a href="Alcohol Detox.html">Alcohol Detox</a><a href="IV Treatment.html">IV Treatment</a><a href="Polysubstance Detox.html">Polysubstance Detox</a><a href="Vivitrol Alcohol Treatment.html">Vivitrol — Alcohol Treatment</a><a href="Vivitrol Opioid Treatment.html">Vivitrol — Opioid Treatment</a>
+        </div>
+      </div>
+      <div><h4>Contact</h4><div class="footer-links">
+        <a href="tel:4802190055">480-219-0055</a>
+        <a href="mailto:info@medxscottsdale.com">info@medxscottsdale.com</a>
+        <a href="https://maps.google.com/?q=11390+E+Via+Linda+Suite+103+Scottsdale+AZ+85259" target="_blank" rel="noopener">11390 E. Via Linda, Ste 103<br />Scottsdale, AZ 85259</a>
+        <span class="muted" style="font-size:0.9rem;">Mon–Fri · 9am–5pm</span>
+      </div></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Med X Scottsdale. All rights reserved.</span>
+      <span class="flex gap-4"><a href="Privacy Policy.html" class="muted">Privacy Policy</a><a href="Terms of Service.html" class="muted">Terms of Service</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/medx-fields.js"></script>
+<script src="js/site.js"></script>
+<script>
+  (function(){
+    var form = document.getElementById('apptForm');
+    var card = document.getElementById('formCard');
+    if(!form) return;
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      if (window.validateMedXForm(form)) {
+        card.classList.add('sent');
+        card.scrollIntoView ? null : null;
+        window.scrollTo({ top: card.getBoundingClientRect().top + window.scrollY - 100, behavior:'smooth' });
+      } else {
+        var firstInvalid = form.querySelector('.field.invalid input, .field.invalid select, .field.invalid textarea');
+        if (firstInvalid) firstInvalid.focus();
+      }
+    });
+    // live-clear errors
+    form.querySelectorAll('[data-validate] input, [data-validate] select, [data-validate] textarea').forEach(function(inp){
+      inp.addEventListener('input', function(){ inp.closest('.field').classList.remove('invalid'); });
+    });
+  })();
+</script>
+</body>
+</html>

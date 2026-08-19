@@ -1,0 +1,187 @@
+/* =========================================================
+   Med X — ShadCN-style form fields (Select, Date picker)
+   Brand-themed, light + dark via existing design tokens.
+   Progressive enhancement: native <select>/<input type=date>
+   are kept (sr-only) to hold value & submit; these render UI.
+   ========================================================= */
+
+/* Hidden native control that still holds the value */
+.mx-native {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* ---------- Trigger (shared by select + date) ---------- */
+.mx-trigger {
+  display: flex; align-items: center; gap: 0.6rem;
+  width: 100%;
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  border: 1px solid hsl(var(--input));
+  border-radius: var(--radius-sm);
+  padding: 0.72em 0.9em;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  line-height: 1.35;
+  text-align: left;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  transition: border-color .18s, box-shadow .18s, background-color .18s;
+}
+.mx-trigger:hover { border-color: hsl(var(--border)); }
+.mx-trigger:focus-visible,
+.mx-trigger[aria-expanded="true"] {
+  outline: none;
+  border-color: hsl(var(--ring));
+  box-shadow: 0 0 0 3px hsl(var(--ring) / 0.18);
+}
+.mx-trigger-value {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.mx-trigger.is-placeholder .mx-trigger-value { color: hsl(var(--muted-foreground)); }
+.mx-trigger-icon {
+  flex: none;
+  display: inline-flex;
+  color: hsl(var(--muted-foreground));
+  transition: transform .2s ease, color .18s;
+}
+.mx-trigger-icon svg { width: 16px; height: 16px; display: block; }
+.mx-trigger[aria-expanded="true"] .mx-trigger-icon { color: hsl(var(--foreground)); }
+.mx-trigger[aria-expanded="true"] .mx-chev svg { transform: rotate(180deg); }
+.mx-chev svg { transition: transform .2s ease; }
+
+/* invalid mirror */
+.field.invalid .mx-trigger {
+  border-color: hsl(var(--primary));
+  box-shadow: 0 0 0 3px hsl(var(--primary) / 0.16);
+}
+
+/* ---------- Floating popover (appended to <body>) ---------- */
+.mx-pop {
+  position: fixed;
+  z-index: 2000;
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+  box-shadow: 0 12px 34px -8px hsl(240 40% 3% / 0.28), 0 4px 12px -6px hsl(240 40% 3% / 0.22);
+  padding: 0.35rem;
+  opacity: 0;
+  transform: translateY(-4px) scale(.985);
+  transform-origin: top center;
+  transition: opacity .14s ease, transform .14s ease;
+  will-change: transform, opacity;
+}
+.mx-pop.open { opacity: 1; transform: none; }
+
+/* ---------- Listbox (select) ---------- */
+.mx-listbox {
+  max-height: 260px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  display: flex; flex-direction: column; gap: 1px;
+}
+.mx-listbox::-webkit-scrollbar { width: 9px; }
+.mx-listbox::-webkit-scrollbar-thumb {
+  background: hsl(var(--border)); border-radius: 999px; border: 2px solid hsl(var(--card));
+}
+.mx-option {
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 0.55rem 0.6rem 0.55rem 0.5rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.92rem;
+  color: hsl(var(--foreground));
+  cursor: pointer;
+  user-select: none;
+}
+.mx-option.active { background: hsl(var(--accent)); }
+.mx-option[aria-selected="true"] { color: hsl(var(--primary)); font-weight: 600; }
+.mx-option-check {
+  flex: none; width: 16px; height: 16px;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: hsl(var(--primary));
+  opacity: 0;
+}
+.mx-option[aria-selected="true"] .mx-option-check { opacity: 1; }
+.mx-option-check svg { width: 15px; height: 15px; }
+.mx-option-label { flex: 1 1 auto; min-width: 0; }
+
+/* ---------- Calendar (date) ---------- */
+.mx-pop-cal { padding: 0.6rem; }
+.mx-cal { width: 16.5rem; }
+.mx-cal-head {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+.mx-cal-label { font-size: 0.95rem; font-weight: 600; color: hsl(var(--foreground)); }
+.mx-cal-nav {
+  width: 30px; height: 30px; flex: none;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: var(--radius-sm);
+  color: hsl(var(--muted-foreground));
+  border: 1px solid transparent;
+  transition: background-color .15s, color .15s, border-color .15s;
+}
+.mx-cal-nav:hover { background: hsl(var(--accent)); color: hsl(var(--foreground)); }
+.mx-cal-nav svg { width: 16px; height: 16px; }
+.mx-cal-wd {
+  display: grid; grid-template-columns: repeat(7, 1fr);
+  margin-bottom: 0.2rem;
+}
+.mx-cal-wd span {
+  text-align: center;
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: hsl(var(--muted-foreground));
+  padding: 0.3rem 0;
+}
+.mx-cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+.mx-day {
+  height: 34px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: var(--radius-sm);
+  font-size: 0.86rem;
+  color: hsl(var(--foreground));
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color .14s, color .14s, border-color .14s;
+}
+.mx-day:hover { background: hsl(var(--accent)); }
+.mx-day:focus-visible { outline: none; box-shadow: 0 0 0 2px hsl(var(--ring) / 0.5); }
+.mx-day-out { color: hsl(var(--muted-foreground) / 0.55); }
+.mx-day-today { border-color: hsl(var(--primary) / 0.55); font-weight: 600; }
+.mx-day-selected,
+.mx-day-selected:hover {
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  border-color: hsl(var(--primary));
+  font-weight: 600;
+  box-shadow: 0 4px 12px -4px hsl(var(--primary) / 0.6);
+}
+.mx-day-disabled {
+  color: hsl(var(--muted-foreground) / 0.4);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.mx-cal-foot {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: 0.5rem; padding-top: 0.5rem;
+  border-top: 1px solid hsl(var(--border));
+}
+.mx-cal-link {
+  font-size: 0.84rem; font-weight: 600;
+  color: hsl(var(--primary));
+  padding: 0.25rem 0.4rem; border-radius: var(--radius-sm);
+  transition: background-color .15s;
+}
+.mx-cal-link:hover { background: hsl(var(--primary-soft)); }
+
+@media (prefers-reduced-motion: reduce) {
+  .mx-pop, .mx-chev svg, .mx-trigger-icon { transition: none; }
+}
