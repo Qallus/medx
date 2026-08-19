@@ -9,6 +9,7 @@
 // by a honeypot field and a per-IP rate limit rather than by auth.
 
 import { createClient } from "jsr:@supabase/supabase-js@2";
+import { renderInquiryEmail, renderInquiryText } from "./email.ts";
 
 const RESEND_ENDPOINT = "https://api.resend.com/emails";
 
@@ -63,14 +64,6 @@ function clean(value: unknown, field: string): string | null {
   if (!trimmed) return null;
   const max = MAX_LENGTHS[field] ?? 500;
   return trimmed.slice(0, max);
-}
-
-function escapeHtml(value: string): string {
-  return value
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
 }
 
 // Deliberately permissive: rejecting an unusual but valid address costs a real
@@ -198,42 +191,37 @@ Deno.serve(async (req: Request) => {
   }
 
   const fullName = `${first_name} ${last_name}`;
-  const rows: Array<[string, string | null]> = [
-    ["Name", fullName],
-    ["Email", email],
-    ["Phone", phone],
-    ["Interested in", service],
-    ["Visit type", visitType],
-    ["Preferred date", preferredDate],
-    ["Preferred time", preferredTime],
-    ["Submitted from", source === "modal" ? "Appointment modal" : "Contact page"],
-  ];
 
-  const detailHtml = rows
-    .filter(([, v]) => v)
-    .map(([label, value]) =>
-      `<tr><td style="padding:6px 14px 6px 0;color:#666;white-space:nowrap;">${label}</td>` +
-      `<td style="padding:6px 0;color:#111;"><strong>${escapeHtml(value!)}</strong></td></tr>`
-    )
-    .join("");
+  // Arizona does not observe DST, so pin the timezone rather than relying on
+  // the edge runtime's locale.
+  const submittedAt = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/Phoenix",
+    dateStyle: "medium",
+    timeStyle: "short",
+  }).format(new Date()) + " MST";
 
-  const html =
-    `<div style="font-family:-apple-system,Segoe UI,Roboto,sans-serif;font-size:15px;line-height:1.5;">` +
-    `<h2 style="margin:0 0 4px;font-size:18px;">New website enquiry</h2>` +
-    `<p style="margin:0 0 18px;color:#666;font-size:13px;">` +
-    `Reply to this email to respond to ${escapeHtml(fullName)} directly.</p>` +
-    `<table style="border-collapse:collapse;margin-bottom:18px;">${detailHtml}</table>` +
-    (message
-      ? `<div style="border-left:3px solid #ddd;padding:2px 0 2px 14px;color:#333;white-space:pre-wrap;">` +
-        `<div style="color:#666;font-size:13px;margin-bottom:4px;">Questions and comments</div>` +
-        `${escapeHtml(message)}</div>`
-      : "") +
-    `</div>`;
+  const emailData = {
+    firstName: first_name!,
+    lastName: last_name!,
+    email: email!,
+    phone: phone!,
+    service,
+    visitType,
+    preferredDate,
+    preferredTime,
+    message,
+    source: source as "contact" | "modal",
+    submittedAt,
+  };
 
-  const text =
-    `New website enquiry\n\n` +
-    rows.filter(([, v]) => v).map(([l, v]) => `${l}: ${v}`).join("\n") +
-    (message ? `\n\nQuestions and comments:\n${message}` : "");
+  // Must be an absolute https URL - relative paths and data: URIs do not
+  // render in Gmail or Outlook. Point this at the production domain once
+  // medxscottsdale.com is live.
+  const logoUrl = Deno.env.get("LOGO_URL") ??
+    "https://app.medxscottsdale.com/assets/med_x_logo.png";
+
+  const html = renderInquiryEmail(emailData, logoUrl);
+  const text = renderInquiryText(emailData);
 
   try {
     const res = await fetch(RESEND_ENDPOINT, {
@@ -251,7 +239,7 @@ Deno.serve(async (req: Request) => {
         // Lets the clinic hit Reply and reach the visitor, while the envelope
         // sender stays on the verified domain.
         reply_to: email,
-        subject: `New enquiry — ${fullName}`,
+        subject: `New enquiry — ${fullName}${service ? " · " + service : ""}`,
         html,
         text,
       }),
