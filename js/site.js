@@ -115,9 +115,67 @@
 
     /* ---- Appointment modal ---- */
     initAppointmentModal();
+    initVideoLightbox();
   });
 
   /* ---- Appointment modal (injected once, shared across pages) ---- */
+  /* ---- YouTube lightbox ----
+     A facade: no YouTube iframe, script or cookie exists until the visitor
+     actually clicks play, so the hero costs nothing on load. ---- */
+  function initVideoLightbox() {
+    var triggers = document.querySelectorAll('[data-video]');
+    if (!triggers.length) return;
+
+    var root = document.createElement('div');
+    root.className = 'video-modal';
+    root.innerHTML =
+      '<div class="video-scrim" data-video-close></div>' +
+      '<div class="video-frame" role="dialog" aria-modal="true" aria-label="Video">' +
+        '<button class="video-close" type="button" data-video-close aria-label="Close video">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>' +
+        '</button>' +
+        '<div class="video-slot"></div>' +
+      '</div>';
+    document.body.appendChild(root);
+
+    var slot = root.querySelector('.video-slot');
+    var opener = null;
+
+    function open(id, trigger) {
+      opener = trigger || null;
+      // youtube-nocookie keeps tracking off until playback is chosen.
+      slot.innerHTML =
+        '<iframe src="https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0" ' +
+        'title="Med X Scottsdale" allowfullscreen ' +
+        'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>';
+      root.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      var close = root.querySelector('.video-close');
+      if (close) close.focus();
+    }
+
+    function close() {
+      if (!root.classList.contains('open')) return;
+      root.classList.remove('open');
+      slot.innerHTML = '';                 // removing the iframe stops playback
+      document.body.style.overflow = '';
+      if (opener) opener.focus();
+    }
+
+    triggers.forEach(function (t) {
+      t.addEventListener('click', function (e) {
+        e.preventDefault();
+        open(t.getAttribute('data-video'), t);
+      });
+    });
+    root.querySelectorAll('[data-video-close]').forEach(function (el) {
+      el.addEventListener('click', close);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') close();
+    });
+  }
+
   function initAppointmentModal() {
     var root = document.querySelector('.modal-root');
     if (!root) {

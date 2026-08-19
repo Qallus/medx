@@ -17,3 +17,7 @@ README.md
 
 # Backend source - deployed to Supabase, never served by nginx
 supabase
+
+# Source imagery and reference material. The optimized copies the site
+# actually uses live in assets/; this folder is ~15MB of originals.
+docs

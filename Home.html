@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" class="light">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Med X Scottsdale — Confidential Outpatient Medical Detox</title>
 <meta name="description" content="Medically supervised outpatient detox in Scottsdale, AZ. Safe, confidential, and more affordable than you'd expect — in person and via telemedicine." />
 <script>
-  (function(){try{var t=localStorage.getItem('medx-theme')||'dark';var r=document.documentElement;r.classList.remove('dark','light');r.classList.add(t);}catch(e){}})();
+  (function(){try{var t=localStorage.getItem('medx-theme')||'light';var r=document.documentElement;r.classList.remove('dark','light');r.classList.add(t);}catch(e){}})();
 </script>
 <link rel="stylesheet" href="css/theme.css" />
 <link rel="stylesheet" href="css/medx-fields.css" />
@@ -35,6 +35,14 @@
   .hero-card .hr-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
   .hero-card .hr-cap { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; padding: 1.6rem 1.3rem 1.1rem; font-size: .82rem; font-weight: 500; color: #fff; letter-spacing: .01em; background: linear-gradient(to top, hsl(240 40% 4% / .72), transparent); display: flex; align-items: center; gap: .5rem; }
   .hero-card .hr-cap svg { width: 15px; height: 15px; flex: none; }
+  /* The hero image doubles as the video thumbnail - the whole card is the
+     click target, with the caption still legible underneath. */
+  .hero-card .hr-play { position: absolute; inset: 0; z-index: 3; width: 100%; height: 100%; display: grid; place-items: center; border: 0; padding: 0; cursor: pointer; background: hsl(240 40% 4% / .26); transition: background .25s ease; }
+  .hero-card .hr-play:hover, .hero-card .hr-play:focus-visible { background: hsl(240 40% 4% / .40); }
+  .hero-card .hr-play::before { content: ""; position: absolute; width: 84px; height: 84px; border-radius: 50%; background: hsl(var(--primary)); box-shadow: 0 12px 36px hsl(240 40% 4% / .5); transition: transform .25s ease; }
+  .hero-card .hr-play:hover::before, .hero-card .hr-play:focus-visible::before { transform: scale(1.07); }
+  .hero-card .hr-play svg { position: relative; width: 34px; height: 34px; color: #fff; margin-left: 5px; }
+  @media (max-width: 560px) { .hero-card .hr-play::before { width: 66px; height: 66px; } .hero-card .hr-play svg { width: 27px; height: 27px; } }
   @media (prefers-reduced-motion: no-preference) {
     .hero-card .hr-2 { opacity: 0; animation: heroFade 12s ease-in-out infinite; }
     .hero-card .hr-img { animation: heroKen 24s ease-in-out infinite alternate; }
@@ -173,7 +181,7 @@
   <div class="container hero-grid">
     <div class="reveal in">
       <span class="badge badge-primary" style="margin-bottom:1.3rem; white-space:nowrap;"><span class="dot"></span>Confidential outpatient detox · Scottsdale</span>
-      <h1>Recovery begins with <span class="scriptx">comfort,</span> dignity &amp; discretion.</h1>
+      <h1>Detoxification begins with <span class="scriptx">comfort,</span> dignity, &amp; discretion.</h1>
       <p class="lead" style="margin-top:1.4rem; max-width:34rem;">Medically supervised, fully customizable outpatient detox for drug &amp; alcohol dependence — in a safe, therapeutic setting. In person or by telemedicine, and far more affordable than you'd expect.</p>
       <div class="hero-cta">
         <a href="Contact.html" class="btn btn-primary btn-lg">Request an appointment<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
@@ -189,6 +197,9 @@
       <div class="hero-card">
         <img class="hr-img" src="assets/photos/lobby.webp" alt="Med X Scottsdale lobby" />
         <img class="hr-img hr-2" src="assets/photos/patient_room.webp" alt="Private patient treatment room at Med X Scottsdale" />
+        <button type="button" class="hr-play" data-video="bOZ3U_gsp4c" aria-label="Play the Med X Scottsdale video">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        </button>
         <span class="hr-cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>Our Scottsdale clinic</span>
       </div>
       <div class="hero-float hf-1">

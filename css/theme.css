@@ -165,6 +165,10 @@ h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 400; line-height: 
 .nav-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: var(--maxw); margin-inline: auto; padding-inline: clamp(20px, 5vw, 40px); }
 .brand { display: flex; align-items: center; gap: 0.6rem; }
 .brand img { height: 38px; width: auto; }
+/* The wordmark gets lost against a full desktop nav at 38px, and the 72px bar
+   has the room. Mobile keeps 38px, where the nav is just the logo and burger.
+   54px stays under the white logo's 96px native height, so it never upscales. */
+@media (min-width: 769px) { .brand img { height: 54px; } }
 .brand .logo-dark { display: none; }
 .dark .brand .logo-dark { display: block; }
 .dark .brand .logo-light { display: none; }
@@ -431,3 +435,15 @@ button[type="submit"][disabled] {
   opacity: .65;
   cursor: progress;
 }
+
+/* ---------- Video lightbox ---------- */
+.video-modal { position: fixed; inset: 0; z-index: 90; display: none; align-items: center; justify-content: center; padding: clamp(1rem, 4vw, 3rem); }
+.video-modal.open { display: flex; }
+.video-scrim { position: absolute; inset: 0; background: hsl(240 40% 3% / 0.84); backdrop-filter: blur(6px); }
+.video-frame { position: relative; width: min(1100px, 100%); }
+.video-slot { position: relative; aspect-ratio: 16 / 9; border-radius: var(--radius-lg); overflow: hidden; background: #000; box-shadow: var(--shadow-lg); }
+.video-slot iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.video-close { position: absolute; top: -48px; right: 0; width: 38px; height: 38px; display: grid; place-items: center; border: 0; border-radius: 50%; background: hsl(0 0% 100% / 0.14); color: #fff; cursor: pointer; transition: background .2s ease; }
+.video-close:hover { background: hsl(0 0% 100% / 0.26); }
+.video-close svg { width: 20px; height: 20px; }
+@media (max-width: 560px) { .video-close { top: -44px; } }
