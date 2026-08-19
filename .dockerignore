@@ -1,9 +1,19 @@
+# Kept out of the build context entirely.
+#
+# nginx.conf is deliberately NOT listed here: the Dockerfile has to COPY it,
+# and excluding it makes that COPY fail with "/nginx.conf: not found". It is
+# removed from the served root inside the Dockerfile instead.
 .git
 .gitignore
+.gitattributes
 .dockerignore
 Dockerfile
-nginx.conf
+
+# Editor and development artefacts
 .vscode
 screenshots
 .thumbnail
 README.md
+
+# Backend source - deployed to Supabase, never served by nginx
+supabase
