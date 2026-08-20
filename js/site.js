@@ -17,8 +17,8 @@
      submission that went nowhere.
      ------------------------------------------------------------ */
   var CONFIG = window.MEDX_CONFIG || {
-    supabaseUrl: '',        // e.g. 'https://abcdefgh.supabase.co'
-    supabaseAnonKey: '',    // publishable anon key
+    supabaseUrl: 'https://axslnjxuparhjllpfbaj.supabase.co',
+    supabaseAnonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF4c2xuanh1cGFyaGpsbHBmYmFqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcxNjQwNDMsImV4cCI6MjEwMjc0MDA0M30.JofjT-FHUYom31dqnZ8NxKXkUZuajvAVXVJNmDlz5Ho',
     functionName: 'send-inquiry'
   };
 
