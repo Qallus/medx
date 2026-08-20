@@ -1,8 +1,8 @@
-// send-inquiry — receives a website enquiry, stores it, then notifies the clinic.
+// send-inquiry — receives a website inquiry, stores it, then notifies the clinic.
 //
 // The row is committed BEFORE the email is attempted, and the response does not
 // depend on the email succeeding. Notification mail to a consumer ISP mailbox
-// will fail sometimes; when it does we still hold the enquiry, flagged by
+// will fail sometimes; when it does we still hold the inquiry, flagged by
 // notify_error and surfaced by the inquiries_undelivered_idx index.
 //
 // Runs with verify_jwt = false because visitors are anonymous. Abuse is handled
@@ -67,7 +67,7 @@ function clean(value: unknown, field: string): string | null {
 }
 
 // Deliberately permissive: rejecting an unusual but valid address costs a real
-// enquiry, which is far worse than accepting one that later bounces.
+// inquiry, which is far worse than accepting one that later bounces.
 function looksLikeEmail(value: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
@@ -128,7 +128,7 @@ Deno.serve(async (req: Request) => {
       .eq("ip_address", ip)
       .gte("created_at", since);
 
-    // A failed rate-limit check must never block a genuine enquiry.
+    // A failed rate-limit check must never block a genuine inquiry.
     if (error) {
       console.error("rate limit check failed:", error.message);
     } else if ((count ?? 0) >= RATE_LIMIT_MAX) {
@@ -177,7 +177,7 @@ Deno.serve(async (req: Request) => {
   }
 
   // ─── Notify the clinic ───────────────────────────────────
-  // Past this point the enquiry is safe. Any failure below is recorded on the
+  // Past this point the inquiry is safe. Any failure below is recorded on the
   // row and never surfaced to the visitor as a failed submission.
   const apiKey = Deno.env.get("RESEND_API_KEY");
   const notifyTo = Deno.env.get("NOTIFY_TO");
@@ -229,7 +229,7 @@ Deno.serve(async (req: Request) => {
       headers: {
         "Authorization": `Bearer ${apiKey}`,
         "Content-Type": "application/json",
-        // Scoped to the row id, so retrying this exact enquiry cannot deliver
+        // Scoped to the row id, so retrying this exact inquiry cannot deliver
         // a second copy within Resend's 24h idempotency window.
         "Idempotency-Key": `inquiry/${inquiry.id}`,
       },
@@ -239,7 +239,7 @@ Deno.serve(async (req: Request) => {
         // Lets the clinic hit Reply and reach the visitor, while the envelope
         // sender stays on the verified domain.
         reply_to: email,
-        subject: `New enquiry — ${fullName}${service ? " · " + service : ""}`,
+        subject: `New inquiry — ${fullName}${service ? " · " + service : ""}`,
         html,
         text,
       }),

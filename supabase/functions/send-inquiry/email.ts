@@ -110,13 +110,13 @@ export function renderInquiryEmail(d: InquiryEmailData, logoUrl: string): string
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>New website enquiry</title>
+<title>New website inquiry</title>
 </head>
 <body style="margin:0;padding:0;background-color:${BRAND.wash};">
 
 <!-- Preview text shown in the inbox list, before the body is opened -->
 <div style="display:none;max-height:0;overflow:hidden;mso-hide:all;font-size:1px;line-height:1px;color:${BRAND.wash};">
-  ${esc(fullName)} &middot; ${esc(d.phone)} &middot; ${esc(d.service || "General enquiry")}
+  ${esc(fullName)} &middot; ${esc(d.phone)} &middot; ${esc(d.service || "General inquiry")}
 </div>
 
 <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:${BRAND.wash};">
@@ -140,7 +140,7 @@ export function renderInquiryEmail(d: InquiryEmailData, logoUrl: string): string
         <!-- BODY -->
         <tr>
           <td style="padding:30px 32px 8px 32px;">
-            <div style="font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:${BRAND.red};font-weight:bold;">New website enquiry</div>
+            <div style="font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:${BRAND.red};font-weight:bold;">New website inquiry</div>
             <h1 style="margin:10px 0 0 0;font-family:Georgia,'Times New Roman',serif;font-size:26px;line-height:1.25;color:${BRAND.ink};font-weight:normal;">${esc(fullName)}</h1>
             <p style="margin:12px 0 0 0;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:${BRAND.body};">
               Someone has requested an appointment through the website. Replying to this email goes straight to them.
@@ -216,7 +216,7 @@ export function renderInquiryEmail(d: InquiryEmailData, logoUrl: string): string
 export function renderInquiryText(d: InquiryEmailData): string {
   const fullName = `${d.firstName} ${d.lastName}`.trim();
   const lines: string[] = [
-    "NEW WEBSITE ENQUIRY",
+    "NEW WEBSITE INQUIRY",
     "===================",
     "",
     `Name:            ${fullName}`,

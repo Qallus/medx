@@ -5,7 +5,7 @@
   'use strict';
 
   /* ------------------------------------------------------------
-     Backend endpoint for the enquiry forms.
+     Backend endpoint for the inquiry forms.
 
      Points at the send-inquiry Supabase Edge Function, which stores
      the submission and emails the clinic. The anon key is safe in
@@ -324,7 +324,7 @@
     if (box) box.style.display = 'none';
   };
 
-  /* ---- Submit an enquiry to the send-inquiry Edge Function ---- */
+  /* ---- Submit an inquiry to the send-inquiry Edge Function ---- */
   window.submitMedXInquiry = function (form, source) {
     if (!CONFIG.supabaseUrl) {
       return Promise.reject(new Error(NOT_CONFIGURED));

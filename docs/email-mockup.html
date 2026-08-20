@@ -1,0 +1,498 @@
+<title>Med X Inquiry Email</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,380;8..60,600&family=Public+Sans:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --ground:#FAFAF9; --surface:#FFFFFF; --surface-2:#F4F4F2;
+    --ink:#141418; --body:#3F3F46; --muted:#74747C; --line:#E5E4E2;
+    --accent:#C81939; --accent-soft:#FDF2F4; --good:#157F4B;
+    --shadow:0 1px 2px rgba(20,20,24,.05), 0 12px 32px -12px rgba(20,20,24,.18);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:#131316; --surface:#1B1B20; --surface-2:#232329;
+      --ink:#F3F3F4; --body:#C2C2C9; --muted:#8A8A93; --line:#2E2E35;
+      --accent:#F0455F; --accent-soft:#2B1017; --good:#4ADE80;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 12px 32px -12px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground:#131316; --surface:#1B1B20; --surface-2:#232329;
+    --ink:#F3F3F4; --body:#C2C2C9; --muted:#8A8A93; --line:#2E2E35;
+    --accent:#F0455F; --accent-soft:#2B1017; --good:#4ADE80;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 12px 32px -12px rgba(0,0,0,.6);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin:0; background:var(--ground); color:var(--body);
+    font-family:"Public Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size:16px; line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap { max-width:1080px; margin:0 auto; padding:clamp(2rem,5vw,4.5rem) clamp(1rem,4vw,2.5rem) 5rem; }
+
+  h1,h2,h3 { font-family:"Source Serif 4", Georgia, serif; color:var(--ink); font-weight:380; text-wrap:balance; margin:0; }
+  h1 { font-size:clamp(2rem,4.4vw,2.9rem); line-height:1.12; letter-spacing:-.015em; }
+  h2 { font-size:clamp(1.35rem,2.4vw,1.7rem); line-height:1.25; }
+  h3 { font-size:1.08rem; font-weight:600; }
+  p { margin:0; }
+  a { color:var(--accent); }
+
+  .eyebrow {
+    font-family:"IBM Plex Mono", ui-monospace, monospace;
+    font-size:.72rem; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--accent); font-weight:500;
+  }
+
+  header.top { display:flex; flex-direction:column; gap:1rem; padding-bottom:2rem; border-bottom:1px solid var(--line); }
+  header.top p.lede { font-size:1.06rem; max-width:62ch; }
+
+  .facts { display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.4rem; }
+  .fact {
+    display:inline-flex; align-items:baseline; gap:.5rem;
+    background:var(--surface); border:1px solid var(--line); border-radius:999px;
+    padding:.34rem .82rem; font-size:.82rem;
+  }
+  .fact b { font-family:"IBM Plex Mono", monospace; font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); font-weight:500; }
+  .fact span { color:var(--ink); font-weight:500; }
+
+  section { margin-top:3.5rem; display:flex; flex-direction:column; gap:1.1rem; }
+  section > .head { display:flex; flex-direction:column; gap:.45rem; }
+  section > .head p { max-width:66ch; }
+
+  /* The email always renders on a light ground, so the preview locks to
+     light regardless of the page theme. */
+  .client {
+    background:#EEEEEC; border:1px solid var(--line); border-radius:14px;
+    padding:clamp(.75rem,2vw,1.5rem); box-shadow:var(--shadow); overflow-x:auto;
+  }
+  .client-bar {
+    background:#FFFFFF; border:1px solid #E4E4E2; border-bottom:0;
+    border-radius:10px 10px 0 0; padding:.85rem 1.1rem;
+    display:flex; flex-direction:column; gap:.28rem;
+    max-width:640px; margin:0 auto;
+  }
+  .client-bar .row { display:flex; gap:.6rem; font-size:.82rem; line-height:1.45; }
+  .client-bar .k {
+    font-family:"IBM Plex Mono", monospace; font-size:.7rem; letter-spacing:.08em;
+    text-transform:uppercase; color:#8A8A90; min-width:58px; padding-top:.15rem;
+  }
+  .client-bar .v { color:#141418; }
+  .client-bar .v.subject { font-weight:700; }
+  .stage { max-width:640px; margin:0 auto; background:#FAFAFA; border:1px solid #E4E4E2; border-radius:0 0 10px 10px; }
+  .stage > table { margin:0 auto; }
+
+  .zones { display:grid; grid-template-columns:repeat(auto-fit,minmax(216px,1fr)); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:12px; overflow:hidden; }
+  .zone { background:var(--surface); padding:1.15rem 1.25rem; display:flex; flex-direction:column; gap:.4rem; }
+  .zone .n { font-family:"IBM Plex Mono",monospace; font-size:.7rem; letter-spacing:.1em; color:var(--accent); text-transform:uppercase; }
+  .zone p { font-size:.9rem; color:var(--muted); }
+
+  .split { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; align-items:start; }
+  @media (max-width:820px) { .split { grid-template-columns:1fr; } }
+
+  pre.text {
+    margin:0; background:var(--surface); border:1px solid var(--line); border-radius:12px;
+    padding:1.25rem 1.4rem; overflow-x:auto;
+    font-family:"IBM Plex Mono", ui-monospace, monospace; font-size:.8rem; line-height:1.65;
+    color:var(--body); white-space:pre;
+  }
+
+  table.spec { width:100%; border-collapse:collapse; font-size:.92rem; }
+  table.spec th, table.spec td { text-align:left; padding:.72rem .9rem; border-bottom:1px solid var(--line); vertical-align:top; }
+  table.spec th {
+    font-family:"IBM Plex Mono",monospace; font-size:.7rem; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--muted); font-weight:500;
+  }
+  table.spec td:first-child { font-family:"IBM Plex Mono",monospace; font-size:.82rem; color:var(--ink); white-space:nowrap; }
+  table.spec tr:last-child td { border-bottom:0; }
+  .spec-wrap { background:var(--surface); border:1px solid var(--line); border-radius:12px; overflow:hidden; overflow-x:auto; }
+
+  .pill { display:inline-block; padding:.12rem .5rem; border-radius:999px; font-size:.72rem; font-weight:700;
+          font-family:"IBM Plex Mono",monospace; letter-spacing:.04em; }
+  .pill.set { background:var(--accent-soft); color:var(--accent); }
+  .pill.you { background:var(--surface-2); color:var(--body); border:1px solid var(--line); }
+
+  ul.decide { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:.9rem; }
+  ul.decide li { display:flex; gap:.85rem; background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:0 10px 10px 0; padding:1rem 1.15rem; }
+  ul.decide .q { font-weight:700; color:var(--ink); display:block; margin-bottom:.15rem; }
+  ul.decide p { font-size:.92rem; }
+
+  .note { font-size:.85rem; color:var(--muted); font-style:italic; }
+</style>
+
+<div class="wrap">
+
+  <header class="top">
+    <span class="eyebrow">Mockup for review</span>
+    <h1>The email Kyra gets when someone submits the form</h1>
+    <p class="lede">Every website inquiry sends this. It is generated from the live template in
+      <code>supabase/functions/send-inquiry/email.ts</code>, so what you see below is exactly what will arrive &mdash;
+      not an impression of it.</p>
+    <div class="facts">
+      <div class="fact"><b>To</b><span>locnikar@cox.net</span></div>
+      <div class="fact"><b>From</b><span>Med X Scottsdale &lt;noreply@medxscottsdale.com&gt;</span></div>
+      <div class="fact"><b>Reply-to</b><span>the visitor</span></div>
+    </div>
+  </header>
+
+  <section>
+    <div class="head">
+      <span class="eyebrow">01 &middot; Complete submission</span>
+      <h2>A visitor who filled in everything</h2>
+      <p>From the appointment modal, which collects preferred date and time on top of the contact page fields.</p>
+    </div>
+    <div class="client">
+      <div class="client-bar">
+        <div class="row"><span class="k">From</span><span class="v">Med X Scottsdale</span></div>
+        <div class="row"><span class="k">To</span><span class="v">locnikar@cox.net</span></div>
+        <div class="row"><span class="k">Subject</span><span class="v subject">New inquiry &mdash; Jordan Avery &middot; Alcohol Detox</span></div>
+      </div>
+      <div class="stage"><table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#FAFAFA;">
+  <tr>
+    <td align="center" style="padding:28px 12px;">
+
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" style="width:600px;max-width:600px;background-color:#FFFFFF;border:1px solid #E4E4E7;border-radius:10px;overflow:hidden;">
+
+        <!-- HEADER: logo -->
+        <tr>
+          <td align="center" style="padding:28px 24px 22px 24px;background-color:#FFFFFF;">
+            <a href="https://medxscottsdale.com" style="text-decoration:none;">
+              <img src="data:image/png;base64,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" width="150" alt="Med X Scottsdale" style="display:block;border:0;width:150px;max-width:150px;height:auto;" />
+            </a>
+          </td>
+        </tr>
+
+        <!-- Brand rule -->
+        <tr><td style="height:3px;background-color:#C81939;font-size:0;line-height:0;">&nbsp;</td></tr>
+
+        <!-- BODY -->
+        <tr>
+          <td style="padding:30px 32px 8px 32px;">
+            <div style="font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#C81939;font-weight:bold;">New website inquiry</div>
+            <h1 style="margin:10px 0 0 0;font-family:Georgia,'Times New Roman',serif;font-size:26px;line-height:1.25;color:#141418;font-weight:normal;">Jordan Avery</h1>
+            <p style="margin:12px 0 0 0;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#3F3F46;">
+              Someone has requested an appointment through the website. Replying to this email goes straight to them.
+            </p>
+          </td>
+        </tr>
+
+        <!-- FORM CONTENT -->
+        <tr>
+          <td style="padding:22px 32px 0 32px;">
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border:1px solid #E4E4E7;border-radius:8px;border-collapse:separate;overflow:hidden;">
+              
+    <tr>
+      <td style="padding:11px 16px;border-bottom:1px solid #E4E4E7;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#71717A;white-space:nowrap;vertical-align:top;width:150px;">Name</td>
+      <td style="padding:11px 16px;border-bottom:1px solid #E4E4E7;font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#141418;font-weight:bold;vertical-align:top;">Jordan Avery</td>
+    </tr>
+    <tr>
+      <td style="padding:11px 16px;border-bottom:1px solid #E4E4E7;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#71717A;white-space:nowrap;vertical-align:top;width:150px;">Email</td>
+      <td style="padding:11px 16px;border-bottom:1px solid #E4E4E7;font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#141418;font-weight:bold;vertical-align:top;"><a href="mailto:jordan.avery@example.com" style="color:#C81939;text-decoration:none;">jordan.avery@example.com</a></td>
+    </tr>
+    <tr>
+      <td style="padding:11px 16px;border-bottom:1px solid #E4E4E7;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#71717A;white-space:nowrap;vertical-align:top;width:150px;">Phone</td>
+      <td style="padding:11px 16px;border-bottom:1px solid #E4E4E7;font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#141418;font-weight:bold;vertical-align:top;"><a href="tel:4805550148" style="color:#C81939;text-decoration:none;">(480) 555-0148</a></td>
+    </tr>
+    <tr>
+      <td style="padding:11px 16px;border-bottom:1px solid #E4E4E7;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#71717A;white-space:nowrap;vertical-align:top;width:150px;">Interested in</td>
+      <td style="padding:11px 16px;border-bottom:1px solid #E4E4E7;font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#141418;font-weight:bold;vertical-align:top;">Alcohol Detox</td>
+    </tr>
+    <tr>
+      <td style="padding:11px 16px;border-bottom:1px solid #E4E4E7;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#71717A;white-space:nowrap;vertical-align:top;width:150px;">Visit type</td>
+      <td style="padding:11px 16px;border-bottom:1px solid #E4E4E7;font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#141418;font-weight:bold;vertical-align:top;">In person (Scottsdale)</td>
+    </tr>
+    <tr>
+      <td style="padding:11px 16px;border-bottom:1px solid #E4E4E7;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#71717A;white-space:nowrap;vertical-align:top;width:150px;">Preferred date</td>
+      <td style="padding:11px 16px;border-bottom:1px solid #E4E4E7;font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#141418;font-weight:bold;vertical-align:top;">Mon, Aug 24, 2026</td>
+    </tr>
+    <tr>
+      <td style="padding:11px 16px;border-bottom:1px solid #E4E4E7;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#71717A;white-space:nowrap;vertical-align:top;width:150px;">Preferred time</td>
+      <td style="padding:11px 16px;border-bottom:1px solid #E4E4E7;font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#141418;font-weight:bold;vertical-align:top;">Morning (9am–12pm)</td>
+    </tr>
+    <tr>
+      <td style="padding:11px 16px;border-bottom:1px solid #E4E4E7;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#71717A;white-space:nowrap;vertical-align:top;width:150px;">Submitted from</td>
+      <td style="padding:11px 16px;border-bottom:1px solid #E4E4E7;font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#141418;font-weight:bold;vertical-align:top;">Appointment modal</td>
+    </tr>
+    <tr>
+      <td style="padding:11px 16px;border-bottom:1px solid #E4E4E7;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#71717A;white-space:nowrap;vertical-align:top;width:150px;">Received</td>
+      <td style="padding:11px 16px;border-bottom:1px solid #E4E4E7;font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#141418;font-weight:bold;vertical-align:top;">Aug 19, 2026, 1:42 PM MST</td>
+    </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- MESSAGE -->
+        <tr>
+          <td style="padding:0 32px;">
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+              
+      <tr>
+        <td style="padding:24px 0 0 0;">
+          <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#FDF2F4;border-left:3px solid #C81939;border-radius:4px;">
+            <tr>
+              <td style="padding:16px 18px;">
+                <div style="font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#C81939;font-weight:bold;padding-bottom:8px;">Questions and comments</div>
+                <div style="font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.55;color:#3F3F46;white-space:pre-wrap;">I'd like to understand what the first visit looks like, and whether my insurance is accepted. Mornings are easiest for me.</div>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- ACTIONS -->
+        <tr>
+          <td style="padding:26px 32px 32px 32px;">
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="border-radius:6px;background-color:#C81939;">
+                  <a href="mailto:jordan.avery@example.com" style="display:inline-block;padding:12px 22px;font-family:Arial,Helvetica,sans-serif;font-size:15px;font-weight:bold;color:#FFFFFF;text-decoration:none;border-radius:6px;">Reply to Jordan</a>
+                </td>
+                <td style="width:10px;">&nbsp;</td>
+                <td style="border-radius:6px;border:1px solid #E4E4E7;">
+                  <a href="tel:4805550148" style="display:inline-block;padding:11px 22px;font-family:Arial,Helvetica,sans-serif;font-size:15px;font-weight:bold;color:#141418;text-decoration:none;border-radius:6px;">Call them</a>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- FOOTER -->
+        <tr>
+          <td style="padding:24px 32px 28px 32px;background-color:#FAFAFA;border-top:1px solid #E4E4E7;">
+            <div style="font-family:Georgia,'Times New Roman',serif;font-size:17px;color:#141418;padding-bottom:6px;">Med X Scottsdale</div>
+            <div style="font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:1.7;color:#71717A;">
+              11390 E. Via Linda, Ste 103, Scottsdale, AZ 85259<br />
+              <a href="tel:4802190055" style="color:#71717A;text-decoration:none;">480-219-0055</a>
+              &nbsp;&middot;&nbsp;
+              <a href="https://medxscottsdale.com" style="color:#71717A;text-decoration:none;">medxscottsdale.com</a><br />
+              Mon&ndash;Fri &middot; 9am &ndash; 5pm
+            </div>
+            <div style="font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:1.6;color:#71717A;padding-top:14px;margin-top:14px;border-top:1px solid #E4E4E7;">
+              This notification was generated by the Med X Scottsdale website. It contains information a
+              prospective patient submitted in confidence &mdash; please handle it accordingly.
+            </div>
+          </td>
+        </tr>
+
+      </table>
+
+    </td>
+  </tr>
+</table></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="head">
+      <span class="eyebrow">Anatomy</span>
+      <h2>The four zones you asked for</h2>
+    </div>
+    <div class="zones">
+      <div class="zone"><span class="n">Header</span><h3>Logo</h3><p>Med X mark centered on white, linked to the site, with a crimson rule beneath it.</p></div>
+      <div class="zone"><span class="n">Body</span><h3>Who and why</h3><p>The visitor's name as the headline, and one line telling Kyra that replying reaches them directly.</p></div>
+      <div class="zone"><span class="n">Form content</span><h3>What they submitted</h3><p>Every field as a labelled row. Email and phone are tap-to-act. Optional fields vanish when empty.</p></div>
+      <div class="zone"><span class="n">Footer</span><h3>Med X details</h3><p>Address, phone, hours, and a confidentiality reminder on a tinted ground.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="head">
+      <span class="eyebrow">02 &middot; Minimum submission</span>
+      <h2>When only the required fields are filled</h2>
+      <p>Name, email and phone are the only required fields. The optional rows and the comments block drop out
+        entirely rather than showing empty labels &mdash; worth checking, since most inquiries will look like this.</p>
+    </div>
+    <div class="client">
+      <div class="client-bar">
+        <div class="row"><span class="k">From</span><span class="v">Med X Scottsdale</span></div>
+        <div class="row"><span class="k">To</span><span class="v">locnikar@cox.net</span></div>
+        <div class="row"><span class="k">Subject</span><span class="v subject">New inquiry &mdash; Sam Reyes</span></div>
+      </div>
+      <div class="stage"><table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#FAFAFA;">
+  <tr>
+    <td align="center" style="padding:28px 12px;">
+
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" style="width:600px;max-width:600px;background-color:#FFFFFF;border:1px solid #E4E4E7;border-radius:10px;overflow:hidden;">
+
+        <!-- HEADER: logo -->
+        <tr>
+          <td align="center" style="padding:28px 24px 22px 24px;background-color:#FFFFFF;">
+            <a href="https://medxscottsdale.com" style="text-decoration:none;">
+              <img src="data:image/png;base64,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" width="150" alt="Med X Scottsdale" style="display:block;border:0;width:150px;max-width:150px;height:auto;" />
+            </a>
+          </td>
+        </tr>
+
+        <!-- Brand rule -->
+        <tr><td style="height:3px;background-color:#C81939;font-size:0;line-height:0;">&nbsp;</td></tr>
+
+        <!-- BODY -->
+        <tr>
+          <td style="padding:30px 32px 8px 32px;">
+            <div style="font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#C81939;font-weight:bold;">New website inquiry</div>
+            <h1 style="margin:10px 0 0 0;font-family:Georgia,'Times New Roman',serif;font-size:26px;line-height:1.25;color:#141418;font-weight:normal;">Sam Reyes</h1>
+            <p style="margin:12px 0 0 0;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#3F3F46;">
+              Someone has requested an appointment through the website. Replying to this email goes straight to them.
+            </p>
+          </td>
+        </tr>
+
+        <!-- FORM CONTENT -->
+        <tr>
+          <td style="padding:22px 32px 0 32px;">
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border:1px solid #E4E4E7;border-radius:8px;border-collapse:separate;overflow:hidden;">
+              
+    <tr>
+      <td style="padding:11px 16px;border-bottom:1px solid #E4E4E7;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#71717A;white-space:nowrap;vertical-align:top;width:150px;">Name</td>
+      <td style="padding:11px 16px;border-bottom:1px solid #E4E4E7;font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#141418;font-weight:bold;vertical-align:top;">Sam Reyes</td>
+    </tr>
+    <tr>
+      <td style="padding:11px 16px;border-bottom:1px solid #E4E4E7;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#71717A;white-space:nowrap;vertical-align:top;width:150px;">Email</td>
+      <td style="padding:11px 16px;border-bottom:1px solid #E4E4E7;font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#141418;font-weight:bold;vertical-align:top;"><a href="mailto:sam.reyes@example.com" style="color:#C81939;text-decoration:none;">sam.reyes@example.com</a></td>
+    </tr>
+    <tr>
+      <td style="padding:11px 16px;border-bottom:1px solid #E4E4E7;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#71717A;white-space:nowrap;vertical-align:top;width:150px;">Phone</td>
+      <td style="padding:11px 16px;border-bottom:1px solid #E4E4E7;font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#141418;font-weight:bold;vertical-align:top;"><a href="tel:4805550199" style="color:#C81939;text-decoration:none;">480-555-0199</a></td>
+    </tr>
+    <tr>
+      <td style="padding:11px 16px;border-bottom:1px solid #E4E4E7;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#71717A;white-space:nowrap;vertical-align:top;width:150px;">Submitted from</td>
+      <td style="padding:11px 16px;border-bottom:1px solid #E4E4E7;font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#141418;font-weight:bold;vertical-align:top;">Contact page</td>
+    </tr>
+    <tr>
+      <td style="padding:11px 16px;border-bottom:1px solid #E4E4E7;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#71717A;white-space:nowrap;vertical-align:top;width:150px;">Received</td>
+      <td style="padding:11px 16px;border-bottom:1px solid #E4E4E7;font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#141418;font-weight:bold;vertical-align:top;">Aug 19, 2026, 2:05 PM MST</td>
+    </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- MESSAGE -->
+        <tr>
+          <td style="padding:0 32px;">
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+              
+            </table>
+          </td>
+        </tr>
+
+        <!-- ACTIONS -->
+        <tr>
+          <td style="padding:26px 32px 32px 32px;">
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="border-radius:6px;background-color:#C81939;">
+                  <a href="mailto:sam.reyes@example.com" style="display:inline-block;padding:12px 22px;font-family:Arial,Helvetica,sans-serif;font-size:15px;font-weight:bold;color:#FFFFFF;text-decoration:none;border-radius:6px;">Reply to Sam</a>
+                </td>
+                <td style="width:10px;">&nbsp;</td>
+                <td style="border-radius:6px;border:1px solid #E4E4E7;">
+                  <a href="tel:4805550199" style="display:inline-block;padding:11px 22px;font-family:Arial,Helvetica,sans-serif;font-size:15px;font-weight:bold;color:#141418;text-decoration:none;border-radius:6px;">Call them</a>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- FOOTER -->
+        <tr>
+          <td style="padding:24px 32px 28px 32px;background-color:#FAFAFA;border-top:1px solid #E4E4E7;">
+            <div style="font-family:Georgia,'Times New Roman',serif;font-size:17px;color:#141418;padding-bottom:6px;">Med X Scottsdale</div>
+            <div style="font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:1.7;color:#71717A;">
+              11390 E. Via Linda, Ste 103, Scottsdale, AZ 85259<br />
+              <a href="tel:4802190055" style="color:#71717A;text-decoration:none;">480-219-0055</a>
+              &nbsp;&middot;&nbsp;
+              <a href="https://medxscottsdale.com" style="color:#71717A;text-decoration:none;">medxscottsdale.com</a><br />
+              Mon&ndash;Fri &middot; 9am &ndash; 5pm
+            </div>
+            <div style="font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:1.6;color:#71717A;padding-top:14px;margin-top:14px;border-top:1px solid #E4E4E7;">
+              This notification was generated by the Med X Scottsdale website. It contains information a
+              prospective patient submitted in confidence &mdash; please handle it accordingly.
+            </div>
+          </td>
+        </tr>
+
+      </table>
+
+    </td>
+  </tr>
+</table></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="head">
+      <span class="eyebrow">Plain text</span>
+      <h2>The text-only version</h2>
+      <p>Sent alongside the HTML. Some clients prefer it, and spam filters treat a missing text part as a
+        negative signal &mdash; which matters when the destination is a consumer ISP mailbox.</p>
+    </div>
+    <pre class="text">NEW WEBSITE INQUIRY
+===================
+
+Name:            Jordan Avery
+Email:           jordan.avery@example.com
+Phone:           (480) 555-0148
+Interested in:   Alcohol Detox
+Visit type:      In person (Scottsdale)
+Preferred date:  Mon, Aug 24, 2026
+Preferred time:  Morning (9am–12pm)
+Submitted from:  Appointment modal
+Received:        Aug 19, 2026, 1:42 PM MST
+
+QUESTIONS AND COMMENTS
+----------------------
+I'd like to understand what the first visit looks like, and whether my insurance is accepted. Mornings are easiest for me.
+
+Reply to this email to reach them directly.
+
+--
+Med X Scottsdale
+11390 E. Via Linda, Ste 103, Scottsdale, AZ 85259
+480-219-0055 · medxscottsdale.com
+Mon-Fri · 9am - 5pm</pre>
+  </section>
+
+  <section>
+    <div class="head">
+      <span class="eyebrow">Configuration</span>
+      <h2>What is set, and what is yours to set</h2>
+    </div>
+    <div class="spec-wrap">
+      <table class="spec">
+        <thead><tr><th>Setting</th><th>Value</th><th>Where</th></tr></thead>
+        <tbody>
+          <tr><td>NOTIFY_TO</td><td>locnikar@cox.net <span class="pill set">in code</span></td><td>Supabase secret</td></tr>
+          <tr><td>NOTIFY_FROM</td><td>Med X Scottsdale &lt;noreply@medxscottsdale.com&gt;</td><td>Supabase secret</td></tr>
+          <tr><td>LOGO_URL</td><td>Defaults to the review domain <span class="pill you">switch at launch</span></td><td>Supabase secret</td></tr>
+          <tr><td>RESEND_API_KEY</td><td>Not yet provided <span class="pill you">yours</span></td><td>Supabase secret</td></tr>
+          <tr><td>reply_to</td><td>The visitor's own address <span class="pill set">automatic</span></td><td>Per message</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">In this preview the logo is embedded so it renders offline. The real email links it from
+      an absolute https URL &mdash; Gmail and Outlook both refuse embedded images.</p>
+  </section>
+
+  <section>
+    <div class="head">
+      <span class="eyebrow">Needs your call</span>
+      <h2>Three things before this goes live</h2>
+    </div>
+    <ul class="decide">
+      <li><div><span class="q">Is the subject line right?</span>
+        <p>Currently <em>New inquiry &mdash; Jordan Avery &middot; Alcohol Detox</em>. The service is appended only when
+          the visitor picked one, so it stays scannable in a crowded inbox.</p></div></li>
+      <li><div><span class="q">Should anyone else be copied?</span>
+        <p>It goes to Kyra alone right now. A second recipient or a shared inbox is a one-word change, and it is
+          the cheapest insurance against a single mailbox filtering these.</p></div></li>
+      <li><div><span class="q">Does the confidentiality line stay?</span>
+        <p>The footer notes that the message contains information submitted in confidence. Fitting for a clinic,
+          but it is your call whether it belongs on an internal notification.</p></div></li>
+    </ul>
+  </section>
+
+</div>
