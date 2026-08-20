@@ -3,4 +3,4 @@ Allow: /
 Disallow: /dashboard
 Disallow: /screenshots/
 
-Sitemap: https://medxscottsdale.com/sitemap.xml
+Sitemap: https://www.medxscottsdale.com/sitemap.xml
