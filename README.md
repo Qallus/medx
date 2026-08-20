@@ -90,7 +90,7 @@ reviewed on `app.medxscottsdale.com`.
 ```sh
 supabase secrets set \
   RESEND_API_KEY=re_xxxxxxxx \
-  NOTIFY_TO=locnikar@cox.net \
+  NOTIFY_TO=info@medxscottsdale.com \
   NOTIFY_FROM="Med X Scottsdale <noreply@medxscottsdale.com>" \
   ALLOWED_ORIGINS=https://app.medxscottsdale.com,https://medxscottsdale.com
 ```
@@ -120,9 +120,10 @@ Function is the only public surface.
 
 ### Watching for undelivered notifications
 
-`NOTIFY_TO` is a consumer ISP mailbox, and those filter aggressively. Mail can
-be delayed or silently binned regardless of authentication, so treat the table
-as the source of truth rather than the inbox:
+`NOTIFY_TO` is `info@medxscottsdale.com`, which sits behind the domain's
+Proofpoint MX. Deliverability is far better than a consumer mailbox, but a
+notification can still be filtered or delayed, so the table stays the source
+of truth rather than the inbox:
 
 ```sql
 select created_at, first_name, last_name, email, phone, notify_error
@@ -134,6 +135,10 @@ order by created_at desc;
 Anything listed here was captured but never confirmed as emailed. Adding a
 Resend webhook for `email.bounced` / `email.complained` is the natural next
 step if bounces become routine.
+
+Note that the site sends *from* `noreply@medxscottsdale.com` *to*
+`info@medxscottsdale.com` - same domain, so these are self-addressed. If they
+ever stop arriving, check Proofpoint's own filtering before suspecting Resend.
 
 ### Abuse handling
 

@@ -173,7 +173,7 @@ const page = `<title>Med X Inquiry Email</title>
       <code>supabase/functions/send-inquiry/email.ts</code>, so what you see below is exactly what will arrive &mdash;
       not an impression of it.</p>
     <div class="facts">
-      <div class="fact"><b>To</b><span>locnikar@cox.net</span></div>
+      <div class="fact"><b>To</b><span>info@medxscottsdale.com</span></div>
       <div class="fact"><b>From</b><span>Med X Scottsdale &lt;noreply@medxscottsdale.com&gt;</span></div>
       <div class="fact"><b>Reply-to</b><span>the visitor</span></div>
     </div>
@@ -188,7 +188,7 @@ const page = `<title>Med X Inquiry Email</title>
     <div class="client">
       <div class="client-bar">
         <div class="row"><span class="k">From</span><span class="v">Med X Scottsdale</span></div>
-        <div class="row"><span class="k">To</span><span class="v">locnikar@cox.net</span></div>
+        <div class="row"><span class="k">To</span><span class="v">info@medxscottsdale.com</span></div>
         <div class="row"><span class="k">Subject</span><span class="v subject">New inquiry &mdash; Jordan Avery &middot; Alcohol Detox</span></div>
       </div>
       <div class="stage">${emailFull}</div>
@@ -218,7 +218,7 @@ const page = `<title>Med X Inquiry Email</title>
     <div class="client">
       <div class="client-bar">
         <div class="row"><span class="k">From</span><span class="v">Med X Scottsdale</span></div>
-        <div class="row"><span class="k">To</span><span class="v">locnikar@cox.net</span></div>
+        <div class="row"><span class="k">To</span><span class="v">info@medxscottsdale.com</span></div>
         <div class="row"><span class="k">Subject</span><span class="v subject">New inquiry &mdash; Sam Reyes</span></div>
       </div>
       <div class="stage">${emailMin}</div>
@@ -244,7 +244,7 @@ const page = `<title>Med X Inquiry Email</title>
       <table class="spec">
         <thead><tr><th>Setting</th><th>Value</th><th>Where</th></tr></thead>
         <tbody>
-          <tr><td>NOTIFY_TO</td><td>locnikar@cox.net <span class="pill set">in code</span></td><td>Supabase secret</td></tr>
+          <tr><td>NOTIFY_TO</td><td>info@medxscottsdale.com <span class="pill set">confirmed</span></td><td>Supabase secret</td></tr>
           <tr><td>NOTIFY_FROM</td><td>Med X Scottsdale &lt;noreply@medxscottsdale.com&gt;</td><td>Supabase secret</td></tr>
           <tr><td>LOGO_URL</td><td>Defaults to the review domain <span class="pill you">switch at launch</span></td><td>Supabase secret</td></tr>
           <tr><td>RESEND_API_KEY</td><td>Not yet provided <span class="pill you">yours</span></td><td>Supabase secret</td></tr>
