@@ -427,7 +427,14 @@ Deno.serve(async (req: Request) => {
   const notifyTo = Deno.env.get("NOTIFY_TO");
   const notifyFrom = Deno.env.get("NOTIFY_FROM");
 
-  if (!apiKey || !notifyTo || !notifyFrom) {
+  // NOTIFY_TO accepts a comma-separated list, so the clinic mailbox can be
+  // copied to someone who will notice if notifications stop arriving.
+  const recipients = (notifyTo ?? "")
+    .split(",")
+    .map((a) => a.trim())
+    .filter(Boolean);
+
+  if (!apiKey || recipients.length === 0 || !notifyFrom) {
     const msg = "Mail not configured (RESEND_API_KEY / NOTIFY_TO / NOTIFY_FROM)";
     console.error(msg);
     await supabase.from("inquiries").update({ notify_error: msg }).eq("id", inquiry.id);
@@ -479,7 +486,7 @@ Deno.serve(async (req: Request) => {
       },
       body: JSON.stringify({
         from: notifyFrom,
-        to: [notifyTo],
+        to: recipients,
         // Lets the clinic hit Reply and reach the visitor, while the envelope
         // sender stays on the verified domain.
         reply_to: email,
